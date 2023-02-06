@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="d-flex justify-content-around">
+    <div class="col-md-4 card-custom">
+        <h3 class="fw-semibold">Getting started</h3>
+        <p class="text-gray">
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and gives you full control over markup
+            for enjoyable, agile development.
+        </p>
+        @Html.ActionLink("Clients", "Index", "Clients", routeValues: null, htmlAttributes: new { @class = "btn btn-primary bg-orange text-light fw-semibold", @role="button" })
+    </div>
+    <div class="col-md-4 card-custom">
+        <h3 class="fw-semibold">Getting started</h3>
+        <p class="text-gray">
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and gives you full control over markup
+            for enjoyable, agile development.
+        </p>
+        @Html.ActionLink("Clients Contacts", "Index", "ClientContacts", routeValues: null, htmlAttributes: new { @class = "btn btn-primary bg-orange text-light fw-semibold", @role = "button" })
+    </div>
+</div>

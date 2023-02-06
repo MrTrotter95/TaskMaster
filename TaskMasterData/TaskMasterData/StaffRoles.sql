@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[StaffRoles]
+(
+	[StaffRoleID] INT IDENTITY (1, 1) NOT NULL,
+	[RoleName] VARCHAR(50) NULL,
+	PRIMARY KEY CLUSTERED ([StaffRoleID] ASC)
+)
