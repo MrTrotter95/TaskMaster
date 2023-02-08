@@ -37,20 +37,23 @@
     </dl>
 </div>
 
-<div>
-    <h4 class="fw-semibold">Client Contacts</h4>
-    <div class="d-flex justify-content-between">
-        @foreach (var contact in Model.ClientContacts)
-        {
-            <div class="d-flex col-md-4 row card-custom">
-                <p class="fw-bold">Contact: <span class="text-gray fw-normal">@contact.FirstName @contact.LastName</span></p>
-                <p class="fw-bold">Email: <span class="text-gray fw-normal">@contact.EmailAddress</span></p>
-                <p class="fw-bold">Contact Number: <span class="text-gray fw-normal">@contact.ContactNumber</span></p>
-            </div>
-        }
-    </div>
-</div>
+<div class="mgt-100">
+    <h1 class="fw-semibold red">Client Contacts</h1>
+    <hr/>
 
+
+        <div class="mgt-50 d-flex gap-5">
+            @foreach (var contact in Model.ClientContacts)
+            {
+                <div class="col-md-4 card-custom">
+                    <h4 class="fw-semibold text-black pt-2 mgb-20">@contact.FirstName @contact.LastName</h4>
+                    <p class="fw-semibold red">Email: <span class="text-black fw-normal">@contact.EmailAddress</span></p>
+                    <p class="fw-semibold red">Contact Number: <span class="text-black fw-normal">@contact.ContactNumber</span></p>
+                </div>
+            }
+        </div>
+
+</div>
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ClientID }) |

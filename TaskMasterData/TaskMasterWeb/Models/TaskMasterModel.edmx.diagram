@@ -5,9 +5,24 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="64d562ca68174ba68d9db25a07aed750" Name="Diagram1">
-        <EntityTypeShape EntityType="TaskMasterDataModel.Client" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TaskMasterDataModel.ClientContact" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskMasterDataModel.Client" Width="1.5" PointX="2.375" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskMasterDataModel.ClientContact" Width="1.5" PointX="0.5" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="TaskMasterDataModel.FK_ClientContact_Client" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TaskMasterDataModel.C__RefactorLog" Width="1.5" PointX="0.5" PointY="7.125" />
+        <EntityTypeShape EntityType="TaskMasterDataModel.AssignedProject" Width="1.5" PointX="9.125" PointY="5.125" />
+        <EntityTypeShape EntityType="TaskMasterDataModel.ProjectField" Width="1.5" PointX="9.125" PointY="1.625" />
+        <EntityTypeShape EntityType="TaskMasterDataModel.ProjectFIeldsType" Width="1.5" PointX="11.625" PointY="0.5" />
+        <EntityTypeShape EntityType="TaskMasterDataModel.Project" Width="1.5" PointX="6.25" PointY="4.75" />
+        <EntityTypeShape EntityType="TaskMasterDataModel.ProjectStatus" Width="1.5" PointX="5.875" PointY="0.5" />
+        <EntityTypeShape EntityType="TaskMasterDataModel.Staff" Width="1.5" PointX="11.875" PointY="5.125" />
+        <EntityTypeShape EntityType="TaskMasterDataModel.StaffRole" Width="1.5" PointX="14.125" PointY="5.125" />
+        <AssociationConnector Association="TaskMasterDataModel.FK_AssignedProjects_Projects" />
+        <AssociationConnector Association="TaskMasterDataModel.FK_AssignedProjects_Staff" />
+        <AssociationConnector Association="TaskMasterDataModel.FK_Projects_Client" />
+        <AssociationConnector Association="TaskMasterDataModel.FK_ProjectFields_Projects" />
+        <AssociationConnector Association="TaskMasterDataModel.FK_ProjectFIeldsType_ProjectFields" />
+        <AssociationConnector Association="TaskMasterDataModel.FK_Projects_ProjectStatus" />
+        <AssociationConnector Association="TaskMasterDataModel.FK_Staff_StaffRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Yeseva+One&display=swap');
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
@@ -50,7 +51,7 @@
     --bs-black-rgb: 0, 0, 0;
     --bs-body-color-rgb: 33, 37, 41;
     --bs-body-bg-rgb: 255, 255, 255;
-    --bs-font-sans-serif: "Inter", sans-serif;
+    --bs-font-sans-serif: "Kanit", sans-serif;
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
     --bs-body-font-family: var(--bs-font-sans-serif);
@@ -86,6 +87,249 @@
     scroll-behavior: smooth;
   }
 }
+
+/*-------------START OF CUSTOM CSS-------------*/
+.red {
+    color: #FF5151;
+}
+
+.white {
+    color: #FFFFFF;
+}
+
+.gray {
+    color: #F3F3F5;
+}
+
+.green {
+    color:#309393;
+}
+
+.bg-green {
+    --bs-bg-opacity: 1;
+    background-color: #309393;
+}
+
+.para1 {
+    font-size: 18px;
+}
+
+.para2 {
+    font-size: 16px;
+}
+
+.primary-button {
+    height: 40px;
+    color: white;
+    font-weight: 400;
+    font-family: Kanit;
+    background-color: #309393;
+    border-radius: 10px;
+    border: 1px solid #309393;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.secondary-button {
+    color: black;
+    font-weight: 400;
+    font-family: Kanit;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #309393;
+}
+
+.cancel-button {
+    color: #5C5C5C;
+    font-weight: 400;
+    font-family: Kanit;
+    font-size: 14px;
+    min-width: 250px;
+    padding: 8px 65px;
+    text-align: center;
+    border: 0;
+}
+
+.sml-btn {
+    height: 40px;
+    width: 150px;
+}
+
+.primary-button:hover {
+    cursor: pointer;
+    background-color: #226c6c;
+    border: 1px solid #226c6c;
+    color: white;
+}
+
+.cancel-button:hover {
+    cursor: pointer;
+    color: #309393;
+}
+
+.input {
+    background-color: white;
+    border: 1px solid #309393;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #5C5C5C;
+    font-family: kanit;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #68dddd;
+}
+
+.mgt-0 {
+    margin-top: 0px;
+}
+
+.mgt-10 {
+    margin-top: 10px;
+}
+
+.mgt-15 {
+    margin-top: 15px;
+}
+
+.mgt-20 {
+    margin-top: 20px;
+}
+
+.mgt-30 {
+    margin-top: 30px;
+}
+
+.mgt-40 {
+    margin-top: 40px;
+}
+
+.mgt-50 {
+    margin-top: 50px;
+}
+
+.mgt-75 {
+    margin-top: 75px;
+}
+
+.mgt-100 {
+    margin-top: 100px;
+}
+
+.mgr-0 {
+    margin-right: 0px;
+}
+
+.mgr-10 {
+    margin-right: 10px;
+}
+
+.mgr-15 {
+    margin-right: 15px;
+}
+
+.mgr-20 {
+    margin-right: 20px;
+}
+
+.mgr-30 {
+    margin-right: 30px;
+}
+
+.mgr-40 {
+    margin-right: 40px;
+}
+
+.mgr-50 {
+    margin-right: 50px;
+}
+
+.mgr-75 {
+    margin-right: 75px;
+}
+
+.mgr-100 {
+    margin-right: 100px;
+}
+
+.mgb-0 {
+    margin-bottom: 0px;
+}
+
+.mgb-10 {
+    margin-bottom: 10px;
+}
+
+.mgb-15 {
+    margin-bottom: 15px;
+}
+
+.mgb-20 {
+    margin-bottom: 20px;
+}
+
+.mgb-30 {
+    margin-bottom: 30px;
+}
+
+.mgb-40 {
+    margin-bottom: 40px;
+}
+
+.mgb-50 {
+    margin-bottom: 50px;
+}
+
+.mgb-75 {
+    margin-bottom: 75px;
+}
+
+.mgb-100 {
+    margin-bottom: 100px;
+}
+
+.mgl-0 {
+    margin-left: 0px;
+}
+
+.mgl-10 {
+    margin-left: 10px;
+}
+
+.mgl-15 {
+    margin-left: 15px;
+}
+
+.mgl-20 {
+    margin-left: 20px;
+}
+
+.mgl-30 {
+    margin-left: 30px;
+}
+
+.mgl-40 {
+    margin-left: 40px;
+}
+
+.mgl-50 {
+    margin-left: 50px;
+}
+
+.mgl-75 {
+    margin-left: 75px;
+}
+
+.mgl-100 {
+    margin-left: 100px;
+}
+
+/*-------------END OF CUSTOM CSS-------------*/
 
 body {
   margin: 0;
@@ -2833,7 +3077,7 @@ textarea.form-control-lg {
   -moz-user-select: none;
   user-select: none;
   border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
-  border-radius: var(--bs-btn-border-radius);
+  border-radius: 10px;
   background-color: var(--bs-btn-bg);
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -2882,15 +3126,15 @@ textarea.form-control-lg {
 
 .btn-primary {
     --bs-btn-color: #fff;
-    --bs-btn-bg: #ea4e43;
-    --bs-btn-border-color: #ea4e43;
+    --bs-btn-bg: #309393;
+    --bs-btn-border-color: #309393;
     --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #bd4037;
-    --bs-btn-hover-border-color: #bd4037;
+    --bs-btn-hover-bg: #226c6c;
+    --bs-btn-hover-border-color: #226c6c;
     --bs-btn-focus-shadow-rgb: 49, 132, 253;
     --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #0a58ca;
-    --bs-btn-active-border-color: #0a53be;
+    --bs-btn-active-bg: #309393;
+    --bs-btn-active-border-color: #309393;
     --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
     --bs-btn-disabled-color: #fff;
     --bs-btn-disabled-bg: #0d6efd;
@@ -2898,20 +3142,20 @@ textarea.form-control-lg {
 }
 
 .btn-secondary {
-  --bs-btn-color: #fff;
-  --bs-btn-bg: #6c757d;
-  --bs-btn-border-color: #6c757d;
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #5c636a;
-  --bs-btn-hover-border-color: #565e64;
-  --bs-btn-focus-shadow-rgb: 130, 138, 145;
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #565e64;
-  --bs-btn-active-border-color: #51585e;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #6c757d;
-  --bs-btn-disabled-border-color: #6c757d;
+    --bs-btn-color: #000;
+    --bs-btn-bg: #ffffff;
+    --bs-btn-border-color: #309393;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #309393;
+    --bs-btn-hover-border-color: #309393;
+    --bs-btn-focus-shadow-rgb: 130, 138, 145;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #565e64;
+    --bs-btn-active-border-color: #51585e;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #6c757d;
+    --bs-btn-disabled-border-color: #6c757d;
 }
 
 .btn-success {
@@ -7992,6 +8236,14 @@ textarea.form-control-lg {
 
 .font-monospace {
   font-family: var(--bs-font-monospace) !important;
+}
+
+.p1 {
+    font-size: 18px;
+}
+
+.p2 {
+    font-size: 16px;
 }
 
 .fs-1 {

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="44b8f66d-2707-417c-b8ce-b4eb16f44232" ChangeDateTime="02/06/2023 08:10:36">
+    <Property Name="ElementName" Value="[dbo].[Projects].[ClientID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Projects]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FKClientID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a2cf53fe-0ff8-42ca-8c6c-8d345325f0cd" ChangeDateTime="02/06/2023 08:10:49">
+    <Property Name="ElementName" Value="[dbo].[Projects].[FKClientID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Projects]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_ClientID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fdae4181-2325-471b-80f7-e99e8b925178" ChangeDateTime="02/06/2023 08:10:56">
+    <Property Name="ElementName" Value="[dbo].[Projects].[StatusID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Projects]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_StatusID" />
+  </Operation>
+</Operations>

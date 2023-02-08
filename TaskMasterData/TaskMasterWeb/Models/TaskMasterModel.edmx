@@ -4,7 +4,21 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TaskMasterDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TaskMasterDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssignedProjects">
+          <Key>
+            <PropertyRef Name="AssignedProjectsID" />
+          </Key>
+          <Property Name="AssignedProjectsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_StaffID" Type="int" Nullable="false" />
+          <Property Name="FK_ProjectID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="ClientID" />
@@ -25,6 +39,85 @@
           <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
           <Property Name="ContactNumber" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="ProjectFields">
+          <Key>
+            <PropertyRef Name="FieldID" />
+          </Key>
+          <Property Name="FieldID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_ProjectID" Type="int" Nullable="false" />
+          <Property Name="FieldValue" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectFIeldsType">
+          <Key>
+            <PropertyRef Name="FieldTypeID" />
+          </Key>
+          <Property Name="FieldTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_FieldID" Type="int" Nullable="false" />
+          <Property Name="FieldTypeValue" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_ClientID" Type="int" Nullable="false" />
+          <Property Name="FK_StatusID" Type="int" Nullable="false" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="50" />
+          <Property Name="CreationDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusValue" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_StaffRoleID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StaffRoles">
+          <Key>
+            <PropertyRef Name="StaffRoleID" />
+          </Key>
+          <Property Name="StaffRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_AssignedProjects_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AssignedProjects" Type="Self.AssignedProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="AssignedProjects">
+              <PropertyRef Name="FK_ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssignedProjects_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AssignedProjects" Type="Self.AssignedProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="AssignedProjects">
+              <PropertyRef Name="FK_StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ClientContact_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -39,16 +132,121 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProjectFields_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectFields" Type="Self.ProjectFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectFields">
+              <PropertyRef Name="FK_ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectFIeldsType_ProjectFields">
+          <End Role="ProjectFields" Type="Self.ProjectFields" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectFIeldsType" Type="Self.ProjectFIeldsType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectFields">
+              <PropertyRef Name="FieldID" />
+            </Principal>
+            <Dependent Role="ProjectFIeldsType">
+              <PropertyRef Name="FK_FieldID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Projects_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="FK_ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Projects_ProjectStatus">
+          <End Role="ProjectStatus" Type="Self.ProjectStatus" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="FK_StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_StaffRoles">
+          <End Role="StaffRoles" Type="Self.StaffRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffRoles">
+              <PropertyRef Name="StaffRoleID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="FK_StaffRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TaskMasterDataModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssignedProjects" EntityType="Self.AssignedProjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientContact" EntityType="Self.ClientContact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectFields" EntityType="Self.ProjectFields" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectFIeldsType" EntityType="Self.ProjectFIeldsType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectStatus" EntityType="Self.ProjectStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaffRoles" EntityType="Self.StaffRoles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AssignedProjects_Projects" Association="Self.FK_AssignedProjects_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="AssignedProjects" EntitySet="AssignedProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssignedProjects_Staff" Association="Self.FK_AssignedProjects_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="AssignedProjects" EntitySet="AssignedProjects" />
+          </AssociationSet>
           <AssociationSet Name="FK_ClientContact_Client" Association="Self.FK_ClientContact_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="ClientContact" EntitySet="ClientContact" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProjectFields_Projects" Association="Self.FK_ProjectFields_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectFields" EntitySet="ProjectFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectFIeldsType_ProjectFields" Association="Self.FK_ProjectFIeldsType_ProjectFields">
+            <End Role="ProjectFields" EntitySet="ProjectFields" />
+            <End Role="ProjectFIeldsType" EntitySet="ProjectFIeldsType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Projects_Client" Association="Self.FK_Projects_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Projects_ProjectStatus" Association="Self.FK_Projects_ProjectStatus">
+            <End Role="ProjectStatus" EntitySet="ProjectStatus" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_StaffRoles" Association="Self.FK_Staff_StaffRoles">
+            <End Role="StaffRoles" EntitySet="StaffRoles" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TaskMasterDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -61,6 +259,7 @@
           <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ClientContacts" Relationship="Self.FK_ClientContact_Client" FromRole="Client" ToRole="ClientContact" />
+          <NavigationProperty Name="Projects" Relationship="TaskMasterDataModel.FK_Projects_Client" FromRole="Client" ToRole="Project" />
         </EntityType>
         <EntityType Name="ClientContact">
           <Key>
@@ -95,7 +294,219 @@
             <End Role="Client" EntitySet="Clients" />
             <End Role="ClientContact" EntitySet="ClientContacts" />
           </AssociationSet>
+          <EntitySet Name="C__RefactorLog" EntityType="TaskMasterDataModel.C__RefactorLog" />
+          <EntitySet Name="AssignedProjects" EntityType="TaskMasterDataModel.AssignedProject" />
+          <EntitySet Name="ProjectFields" EntityType="TaskMasterDataModel.ProjectField" />
+          <EntitySet Name="ProjectFIeldsTypes" EntityType="TaskMasterDataModel.ProjectFIeldsType" />
+          <EntitySet Name="Projects" EntityType="TaskMasterDataModel.Project" />
+          <EntitySet Name="ProjectStatus1" EntityType="TaskMasterDataModel.ProjectStatus" />
+          <EntitySet Name="Staffs" EntityType="TaskMasterDataModel.Staff" />
+          <EntitySet Name="StaffRoles" EntityType="TaskMasterDataModel.StaffRole" />
+          <AssociationSet Name="FK_AssignedProjects_Projects" Association="TaskMasterDataModel.FK_AssignedProjects_Projects">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="AssignedProject" EntitySet="AssignedProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssignedProjects_Staff" Association="TaskMasterDataModel.FK_AssignedProjects_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="AssignedProject" EntitySet="AssignedProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Projects_Client" Association="TaskMasterDataModel.FK_Projects_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectFields_Projects" Association="TaskMasterDataModel.FK_ProjectFields_Projects">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectField" EntitySet="ProjectFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectFIeldsType_ProjectFields" Association="TaskMasterDataModel.FK_ProjectFIeldsType_ProjectFields">
+            <End Role="ProjectField" EntitySet="ProjectFields" />
+            <End Role="ProjectFIeldsType" EntitySet="ProjectFIeldsTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Projects_ProjectStatus" Association="TaskMasterDataModel.FK_Projects_ProjectStatus">
+            <End Role="ProjectStatu" EntitySet="ProjectStatus1" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_StaffRoles" Association="TaskMasterDataModel.FK_Staff_StaffRoles">
+            <End Role="StaffRole" EntitySet="StaffRoles" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssignedProject">
+          <Key>
+            <PropertyRef Name="AssignedProjectsID" />
+          </Key>
+          <Property Name="AssignedProjectsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_StaffID" Type="Int32" Nullable="false" />
+          <Property Name="FK_ProjectID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="TaskMasterDataModel.FK_AssignedProjects_Projects" FromRole="AssignedProject" ToRole="Project" />
+          <NavigationProperty Name="Staff" Relationship="TaskMasterDataModel.FK_AssignedProjects_Staff" FromRole="AssignedProject" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="ProjectField">
+          <Key>
+            <PropertyRef Name="FieldID" />
+          </Key>
+          <Property Name="FieldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="FieldValue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Project" Relationship="TaskMasterDataModel.FK_ProjectFields_Projects" FromRole="ProjectField" ToRole="Project" />
+          <NavigationProperty Name="ProjectFIeldsTypes" Relationship="TaskMasterDataModel.FK_ProjectFIeldsType_ProjectFields" FromRole="ProjectField" ToRole="ProjectFIeldsType" />
+        </EntityType>
+        <EntityType Name="ProjectFIeldsType">
+          <Key>
+            <PropertyRef Name="FieldTypeID" />
+          </Key>
+          <Property Name="FieldTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_FieldID" Type="Int32" Nullable="false" />
+          <Property Name="FieldTypeValue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProjectField" Relationship="TaskMasterDataModel.FK_ProjectFIeldsType_ProjectFields" FromRole="ProjectFIeldsType" ToRole="ProjectField" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_ClientID" Type="Int32" Nullable="false" />
+          <Property Name="FK_StatusID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="AssignedProjects" Relationship="TaskMasterDataModel.FK_AssignedProjects_Projects" FromRole="Project" ToRole="AssignedProject" />
+          <NavigationProperty Name="Client" Relationship="TaskMasterDataModel.FK_Projects_Client" FromRole="Project" ToRole="Client" />
+          <NavigationProperty Name="ProjectFields" Relationship="TaskMasterDataModel.FK_ProjectFields_Projects" FromRole="Project" ToRole="ProjectField" />
+          <NavigationProperty Name="ProjectStatus" Relationship="TaskMasterDataModel.FK_Projects_ProjectStatus" FromRole="Project" ToRole="ProjectStatu" />
+        </EntityType>
+        <EntityType Name="ProjectStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusValue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Projects" Relationship="TaskMasterDataModel.FK_Projects_ProjectStatus" FromRole="ProjectStatu" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_StaffRoleID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AssignedProjects" Relationship="TaskMasterDataModel.FK_AssignedProjects_Staff" FromRole="Staff" ToRole="AssignedProject" />
+          <NavigationProperty Name="StaffRole" Relationship="TaskMasterDataModel.FK_Staff_StaffRoles" FromRole="Staff" ToRole="StaffRole" />
+        </EntityType>
+        <EntityType Name="StaffRole">
+          <Key>
+            <PropertyRef Name="StaffRoleID" />
+          </Key>
+          <Property Name="StaffRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Staffs" Relationship="TaskMasterDataModel.FK_Staff_StaffRoles" FromRole="StaffRole" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK_AssignedProjects_Projects">
+          <End Type="TaskMasterDataModel.Project" Role="Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TaskMasterDataModel.AssignedProject" Role="AssignedProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="AssignedProject">
+              <PropertyRef Name="FK_ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssignedProjects_Staff">
+          <End Type="TaskMasterDataModel.Staff" Role="Staff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TaskMasterDataModel.AssignedProject" Role="AssignedProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="AssignedProject">
+              <PropertyRef Name="FK_StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Projects_Client">
+          <End Type="TaskMasterDataModel.Client" Role="Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TaskMasterDataModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="FK_ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectFields_Projects">
+          <End Type="TaskMasterDataModel.Project" Role="Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TaskMasterDataModel.ProjectField" Role="ProjectField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectField">
+              <PropertyRef Name="FK_ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectFIeldsType_ProjectFields">
+          <End Type="TaskMasterDataModel.ProjectField" Role="ProjectField" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TaskMasterDataModel.ProjectFIeldsType" Role="ProjectFIeldsType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectField">
+              <PropertyRef Name="FieldID" />
+            </Principal>
+            <Dependent Role="ProjectFIeldsType">
+              <PropertyRef Name="FK_FieldID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Projects_ProjectStatus">
+          <End Type="TaskMasterDataModel.ProjectStatus" Role="ProjectStatu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TaskMasterDataModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectStatu">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="FK_StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_StaffRoles">
+          <End Type="TaskMasterDataModel.StaffRole" Role="StaffRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TaskMasterDataModel.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffRole">
+              <PropertyRef Name="StaffRoleID" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="FK_StaffRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -121,6 +532,79 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="TaskMasterDataModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssignedProjects">
+            <EntityTypeMapping TypeName="TaskMasterDataModel.AssignedProject">
+              <MappingFragment StoreEntitySet="AssignedProjects">
+                <ScalarProperty Name="FK_ProjectID" ColumnName="FK_ProjectID" />
+                <ScalarProperty Name="FK_StaffID" ColumnName="FK_StaffID" />
+                <ScalarProperty Name="AssignedProjectsID" ColumnName="AssignedProjectsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectFields">
+            <EntityTypeMapping TypeName="TaskMasterDataModel.ProjectField">
+              <MappingFragment StoreEntitySet="ProjectFields">
+                <ScalarProperty Name="FieldValue" ColumnName="FieldValue" />
+                <ScalarProperty Name="FK_ProjectID" ColumnName="FK_ProjectID" />
+                <ScalarProperty Name="FieldID" ColumnName="FieldID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectFIeldsTypes">
+            <EntityTypeMapping TypeName="TaskMasterDataModel.ProjectFIeldsType">
+              <MappingFragment StoreEntitySet="ProjectFIeldsType">
+                <ScalarProperty Name="FieldTypeValue" ColumnName="FieldTypeValue" />
+                <ScalarProperty Name="FK_FieldID" ColumnName="FK_FieldID" />
+                <ScalarProperty Name="FieldTypeID" ColumnName="FieldTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="TaskMasterDataModel.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="FK_StatusID" ColumnName="FK_StatusID" />
+                <ScalarProperty Name="FK_ClientID" ColumnName="FK_ClientID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectStatus1">
+            <EntityTypeMapping TypeName="TaskMasterDataModel.ProjectStatus">
+              <MappingFragment StoreEntitySet="ProjectStatus">
+                <ScalarProperty Name="StatusValue" ColumnName="StatusValue" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="TaskMasterDataModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="FK_StaffRoleID" ColumnName="FK_StaffRoleID" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StaffRoles">
+            <EntityTypeMapping TypeName="TaskMasterDataModel.StaffRole">
+              <MappingFragment StoreEntitySet="StaffRoles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="StaffRoleID" ColumnName="StaffRoleID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

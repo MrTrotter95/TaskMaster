@@ -12,23 +12,23 @@ namespace TaskMasterWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Client
+    public partial class Staff
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Client()
+        public Staff()
         {
-            this.ClientContacts = new HashSet<ClientContact>();
-            this.Projects = new HashSet<Project>();
+            this.AssignedProjects = new HashSet<AssignedProject>();
         }
     
-        public int ClientID { get; set; }
-        public string CompanyName { get; set; }
-        public string EmailAddress { get; set; }
+        public int StaffID { get; set; }
+        public int FK_StaffRoleID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string ContactNumber { get; set; }
+        public string EmailAddress { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClientContact> ClientContacts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Project> Projects { get; set; }
+        public virtual ICollection<AssignedProject> AssignedProjects { get; set; }
+        public virtual StaffRole StaffRole { get; set; }
     }
 }

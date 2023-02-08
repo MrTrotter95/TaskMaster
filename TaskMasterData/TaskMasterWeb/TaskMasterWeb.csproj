@@ -129,10 +129,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AssignedProjectsController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProjectFieldsController.cs" />
+    <Compile Include="Controllers\ProjectFIeldsTypesController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\ProjectStatusController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
+    <Compile Include="Controllers\StaffRolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AssignedProject.cs">
+      <DependentUpon>TaskMasterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Client.cs">
       <DependentUpon>TaskMasterModel.tt</DependentUpon>
@@ -141,6 +151,27 @@
       <DependentUpon>TaskMasterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\ClientContactsController.cs" />
+    <Compile Include="Models\C__RefactorLog.cs">
+      <DependentUpon>TaskMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Project.cs">
+      <DependentUpon>TaskMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectField.cs">
+      <DependentUpon>TaskMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectFIeldsType.cs">
+      <DependentUpon>TaskMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectStatus.cs">
+      <DependentUpon>TaskMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Staff.cs">
+      <DependentUpon>TaskMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StaffRole.cs">
+      <DependentUpon>TaskMasterModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TaskMasterModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -157,6 +188,7 @@
       <DependentUpon>TaskMasterModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ProjectCreateViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -258,9 +290,47 @@
     <Content Include="Views\ClientContacts\Details.cshtml" />
     <Content Include="Views\ClientContacts\Edit.cshtml" />
     <Content Include="Views\ClientContacts\Index.cshtml" />
+    <Content Include="Views\StaffRoles\Create.cshtml" />
+    <Content Include="Views\StaffRoles\Delete.cshtml" />
+    <Content Include="Views\StaffRoles\Details.cshtml" />
+    <Content Include="Views\StaffRoles\Edit.cshtml" />
+    <Content Include="Views\StaffRoles\Index.cshtml" />
+    <Content Include="Views\Staff\Create.cshtml" />
+    <Content Include="Views\Staff\Delete.cshtml" />
+    <Content Include="Views\Staff\Details.cshtml" />
+    <Content Include="Views\Staff\Edit.cshtml" />
+    <Content Include="Views\Staff\Index.cshtml" />
+    <Content Include="Views\ProjectStatus\Create.cshtml" />
+    <Content Include="Views\ProjectStatus\Delete.cshtml" />
+    <Content Include="Views\ProjectStatus\Details.cshtml" />
+    <Content Include="Views\ProjectStatus\Edit.cshtml" />
+    <Content Include="Views\ProjectStatus\Index.cshtml" />
+    <Content Include="Views\Projects\Create.cshtml" />
+    <Content Include="Views\Projects\Delete.cshtml" />
+    <Content Include="Views\Projects\Details.cshtml" />
+    <Content Include="Views\Projects\Edit.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\AssignedProjects\Create.cshtml" />
+    <Content Include="Views\AssignedProjects\Delete.cshtml" />
+    <Content Include="Views\AssignedProjects\Details.cshtml" />
+    <Content Include="Views\AssignedProjects\Edit.cshtml" />
+    <Content Include="Views\AssignedProjects\Index.cshtml" />
+    <Content Include="Views\ProjectFields\Create.cshtml" />
+    <Content Include="Views\ProjectFields\Delete.cshtml" />
+    <Content Include="Views\ProjectFields\Details.cshtml" />
+    <Content Include="Views\ProjectFields\Edit.cshtml" />
+    <Content Include="Views\ProjectFields\Index.cshtml" />
+    <Content Include="Views\ProjectFIeldsTypes\Create.cshtml" />
+    <Content Include="Views\ProjectFIeldsTypes\Delete.cshtml" />
+    <Content Include="Views\ProjectFIeldsTypes\Details.cshtml" />
+    <Content Include="Views\ProjectFIeldsTypes\Edit.cshtml" />
+    <Content Include="Views\ProjectFIeldsTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Project\" />
+    <Folder Include="Views\AddProject\" />
+    <Folder Include="Views\Project\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -62,5 +62,13 @@
     <Build Include="ClientContact.sql" />
     <Build Include="StaffRoles.sql" />
     <Build Include="Staff.sql" />
+    <Build Include="ProjectStatus.sql" />
+    <Build Include="Projects.sql" />
+    <Build Include="AssignedProjects.sql" />
+    <Build Include="ProjectFields.sql" />
+    <Build Include="ProjectFIeldsType.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="TaskMasterData.refactorlog" />
   </ItemGroup>
 </Project>
