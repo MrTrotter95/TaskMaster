@@ -27,6 +27,7 @@ namespace TaskMasterWeb.ViewModels
         public ProjectCreateViewModel()
         {
             var clients = ClientRepository.GetAllClients();
+            ClientSelectList = clients.Select(c => new SelectListItem { key = c.CompanyName})
         }
 
         public void CopyToModel(Project project)
