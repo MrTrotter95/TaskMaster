@@ -10,21 +10,23 @@ namespace TaskMasterWeb.ViewModels
     {
         public string ProjectName { get; set; }
         public int SelectedClientId { get; set; }
-        public int[] SelectedStaffIds { get; set; }
+        //public int[] SelectedStaffIds { get; set; }
         public int SelectedStatusId { get; set; }
-        public int FK_ClientID { get; set; }
-        public int FK_StatusID { get; set; }
-        public int FK_StaffID { get; set; }
 
-        public List<Client> Clients { get; set; }
-        public List<Staff> Staff { get; set; }
-        public List<ProjectStatus> Statuses { get; set; }
+
+
+        // Meta Data
+        public List<SelectListItems> ClientSelectList;
+
+        public List<SelectListItems> StaffSelectList;
+
+        public List<SelectListItems> StatusSelectList;
 
 
 
         public ProjectCreateViewModel()
         {
-            
+            var clients = ClientRepository.GetAllClients();
         }
 
         public void CopyToModel(Project project)

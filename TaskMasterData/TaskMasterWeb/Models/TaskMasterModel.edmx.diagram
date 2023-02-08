@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="64d562ca68174ba68d9db25a07aed750" Name="Diagram1">
+      <Diagram DiagramId="64d562ca68174ba68d9db25a07aed750" Name="Diagram1" ZoomLevel="85">
         <EntityTypeShape EntityType="TaskMasterDataModel.Client" Width="1.5" PointX="2.375" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TaskMasterDataModel.ClientContact" Width="1.5" PointX="0.5" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="TaskMasterDataModel.FK_ClientContact_Client" ManuallyRouted="false" />

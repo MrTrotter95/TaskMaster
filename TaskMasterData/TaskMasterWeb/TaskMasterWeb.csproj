@@ -188,6 +188,7 @@
       <DependentUpon>TaskMasterModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="ViewModels\ProjectCreateViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
