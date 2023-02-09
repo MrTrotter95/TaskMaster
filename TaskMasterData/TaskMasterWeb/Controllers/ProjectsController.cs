@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using TaskMasterWeb.Models;
 using TaskMasterWeb.ViewModels;
@@ -41,80 +37,49 @@ namespace TaskMasterWeb.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.FK_ClientID = new SelectList(db.Clients, "ClientID", "CompanyName");
-            ViewBag.FK_StatusID = new SelectList(db.ProjectStatus, "StatusID", "StatusValue");
-            ViewBag.FK_StaffID = new SelectList(db.Staffs, "StaffID", "FirstName");
-
-            //Don't think I need this?
-            var viewModel = new ProjectCreateViewModel
-            {
-                Clients = db.Clients.ToList(),
-                Staff = db.Staffs.ToList(),
-                Statuses = db.ProjectStatus.ToList()
-            };
-
+            var viewModel = new ProjectCreateViewModel();
 
             return View(viewModel);
         }
-
-        //// GET: Projects/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.FK_ClientID = new SelectList(db.Clients, "ClientID", "CompanyName");
-        //    ViewBag.FK_StatusID = new SelectList(db.ProjectStatus, "StatusID", "StatusValue");
-        //    return View();
-        //}
 
         // POST: Projects/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProjectID,FK_ClientID,FK_StatusID,ProjectName,CreationDate,FK_StaffID")] ProjectCreateViewModel viewModel)
+        public ActionResult Create(ProjectCreateViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Clients = new SelectList(db.Clients, "ClientID", "CompanyName");
-                ViewBag.Status = new SelectList(db.ProjectStatus, "StatusID", "StatusValue");
-                ViewBag.Staff = new SelectList(db.Staffs, "StaffID", "FirstName");
+                viewModel = new ProjectCreateViewModel();
 
-                viewModel.Clients = db.Clients.ToList();
-                viewModel.Staff = db.Staffs.ToList();
-                viewModel.Statuses = db.ProjectStatus.ToList();
                 return View(viewModel);
             }
 
+
+            // Copy viewModel data to Project model.
             var project = new Project
             {
-                FK_ClientID = viewModel.FK_ClientID,
-                FK_StatusID = viewModel.FK_StatusID,
                 ProjectName = viewModel.ProjectName,
+                FK_ClientID = viewModel.SelectedClientId,
+                FK_StatusID = viewModel.SelectedStatusId,
                 CreationDate = null
-
-                //FK_ClientID = viewModel.SelectedClientId,
-                //FK_StatusID = viewModel.SelectedStatusId,
-                //ProjectName = viewModel.ProjectName,
-                //CreationDate = null
             };
 
-            // Save Project
+            // Save project
             db.Projects.Add(project);
             db.SaveChanges();
 
-            var projectAssignedTo = new AssignedProject
+
+            var assignedProjects = viewModel.SelectedStaffIds.Select(id => new AssignedProject
             {
-                FK_StaffID = viewModel.FK_StaffID,
+                FK_StaffID = id,
                 FK_ProjectID = project.ProjectID
-            };
+            });
 
-            //var assignedProjects = viewModel.SelectedStaffIds.Select(staffId => new AssignedProject
-            //{
-            //    FK_ProjectID = project.ProjectID,
-            //    FK_StaffID = staffId
-            //});
 
-            // Save Projects Assigned to staff
-            db.AssignedProjects.Add(projectAssignedTo);
+            // Save assigned project
+            db.AssignedProjects.AddRange(assignedProjects);
             db.SaveChanges();
 
             return RedirectToAction("Index");
