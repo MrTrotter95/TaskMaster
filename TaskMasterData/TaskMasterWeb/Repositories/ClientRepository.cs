@@ -4,8 +4,9 @@ using System.Linq;
 using System.Web;
 using TaskMasterWeb.Models;
 
+
 namespace TaskMasterWeb.Repositories
-{
+{ 
     public class ClientRepository
     {
         private TaskMasterDataEntities db = new TaskMasterDataEntities();
