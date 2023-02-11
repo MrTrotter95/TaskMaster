@@ -188,9 +188,13 @@
       <DependentUpon>TaskMasterModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ClientContactsRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
+    <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Repositories\StaffRepository.cs" />
     <Compile Include="Repositories\ProjectStatusRepository.cs" />
+    <Compile Include="ViewModels\Client\ClientDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Client\ClientDirectoryViewModel.cs" />
     <Compile Include="ViewModels\ProjectCreateViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +217,20 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\chosen-sprite%402x.png" />
     <Content Include="Content\chosen-sprite.png" />
+    <Content Include="Content\Images\arrow-down-circle.svg" />
+    <Content Include="Content\Images\arrow-left-circle.svg" />
+    <Content Include="Content\Images\arrow-left.svg" />
+    <Content Include="Content\Images\bullseye.svg" />
+    <Content Include="Content\Images\calendar3.svg" />
+    <Content Include="Content\Images\caret-down-fill.svg" />
+    <Content Include="Content\Images\envelope-at-fill.svg" />
+    <Content Include="Content\Images\gear.svg" />
+    <Content Include="Content\Images\justify-left.svg" />
+    <Content Include="Content\Images\list-ul.svg" />
+    <Content Include="Content\Images\person-circle.svg" />
+    <Content Include="Content\Images\person-plus-fill.svg" />
+    <Content Include="Content\Images\search.svg" />
+    <Content Include="Content\Images\telephone-fill.svg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -339,6 +357,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\Project\" />
+    <Folder Include="ViewModels\Projects\" />
     <Folder Include="Views\AddProject\" />
     <Folder Include="Views\Project\" />
   </ItemGroup>

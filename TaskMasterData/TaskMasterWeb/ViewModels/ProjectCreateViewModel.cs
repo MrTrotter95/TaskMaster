@@ -12,7 +12,7 @@ namespace TaskMasterWeb.ViewModels
     {
         public string ProjectName { get; set; }
         public int SelectedClientId { get; set; }
-        //public int[] SelectedStaffIds { get; set; }
+        public int[] SelectedStaffIds { get; set; }
         public int SelectedStatusId { get; set; }
 
 

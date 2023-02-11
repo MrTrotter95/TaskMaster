@@ -4,21 +4,16 @@ using System.Linq;
 using System.Web;
 using TaskMasterWeb.Models;
 
-
 namespace TaskMasterWeb.Repositories
-{ 
-    public class ClientRepository
+{
+    public class ClientContactsRepository
     {
         private TaskMasterDataEntities db = new TaskMasterDataEntities();
-
-        public Client GetClientById(int id)
+        public List<ClientContact> GetClientContactsByClientId(int id)
         {
-            return db.Clients.Find(id);
-        }
+            var contacts = db.ClientContacts.Where(c => c.FK_ClientID == id).ToList();
 
-        public List<Client> GetAllClients()
-        {
-            return db.Clients.ToList();
+            return contacts;
         }
     }
 }
