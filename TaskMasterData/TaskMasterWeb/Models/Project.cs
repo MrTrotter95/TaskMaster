@@ -34,6 +34,4 @@ namespace TaskMasterWeb.Models
         public virtual ICollection<ProjectField> ProjectFields { get; set; }
         public virtual ProjectStatus ProjectStatus { get; set; }
     }
-
-
 }

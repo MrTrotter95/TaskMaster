@@ -50,10 +50,17 @@ namespace TaskMasterWeb.ViewModels
             }).ToList();
         }
 
-        public void CopyToModel(Project project)
+        public Project CopyToModel(ProjectCreateViewModel viewModel)
         {
+            var project = new Project
+            {
+                ProjectName = viewModel.ProjectName,
+                FK_ClientID = viewModel.SelectedClientId,
+                FK_StatusID = viewModel.SelectedStatusId,
+                CreationDate = null
+            };
 
-
+            return project;
         }
 
     }

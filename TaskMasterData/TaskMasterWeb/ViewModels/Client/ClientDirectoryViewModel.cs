@@ -21,13 +21,6 @@ namespace TaskMasterWeb.ViewModels
         [Display(Name = "Contact Number")]
         public string ContactNumber { get; set; }
 
-        public List<Client> Clients;
 
-        public ClientDirectoryViewModel()
-        {
-            var clientRepository = new ClientRepository();
-
-            Clients = clientRepository.GetAllClients();
-        }
     }
 }

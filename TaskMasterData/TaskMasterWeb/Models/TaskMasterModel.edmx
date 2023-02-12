@@ -27,6 +27,10 @@
           <Property Name="CompanyName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
           <Property Name="ContactNumber" Type="varchar" MaxLength="50" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="Suburb" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ClientContact">
           <Key>
@@ -260,6 +264,10 @@
           <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ClientContacts" Relationship="Self.FK_ClientContact_Client" FromRole="Client" ToRole="ClientContact" />
           <NavigationProperty Name="Projects" Relationship="TaskMasterDataModel.FK_Projects_Client" FromRole="Client" ToRole="Project" />
+          <Property Name="StreetAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Suburb" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ClientContact">
           <Key>
@@ -516,6 +524,10 @@
           <EntitySetMapping Name="Clients">
             <EntityTypeMapping TypeName="TaskMasterDataModel.Client">
               <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />

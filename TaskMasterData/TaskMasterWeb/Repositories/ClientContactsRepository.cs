@@ -9,6 +9,7 @@ namespace TaskMasterWeb.Repositories
     public class ClientContactsRepository
     {
         private TaskMasterDataEntities db = new TaskMasterDataEntities();
+
         public List<ClientContact> GetClientContactsByClientId(int id)
         {
             var contacts = db.ClientContacts.Where(c => c.FK_ClientID == id).ToList();

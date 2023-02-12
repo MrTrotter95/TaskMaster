@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TaskMasterWeb.Models;
+using TaskMasterWeb.ViewModels.Client;
 
 namespace TaskMasterWeb.Controllers
 {
@@ -21,18 +22,16 @@ namespace TaskMasterWeb.Controllers
         }
 
         // GET: Clients/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Client client = db.Clients.Find(id);
-            if (client == null)
+            var viewModel = new ClientDetailsViewModel(id);
+
+            var cantFindClient =  db.Clients.Find(id);
+            if (cantFindClient == null)
             {
                 return HttpNotFound();
             }
-            return View(client);
+            return View(viewModel);
         }
 
         // GET: Clients/Create

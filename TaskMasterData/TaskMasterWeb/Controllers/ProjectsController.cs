@@ -4,6 +4,7 @@ using System.Net;
 using System.Web.Mvc;
 using TaskMasterWeb.Models;
 using TaskMasterWeb.ViewModels;
+using TaskMasterWeb.ViewModels.Projects;
 
 namespace TaskMasterWeb.Controllers
 {
@@ -42,9 +43,6 @@ namespace TaskMasterWeb.Controllers
             return View(viewModel);
         }
 
-        // POST: Projects/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ProjectCreateViewModel viewModel)
@@ -56,27 +54,16 @@ namespace TaskMasterWeb.Controllers
                 return View(viewModel);
             }
 
+            var project = viewModel.CopyToModel(viewModel);
 
-            // Copy viewModel data to Project model.
-            var project = new Project
-            {
-                ProjectName = viewModel.ProjectName,
-                FK_ClientID = viewModel.SelectedClientId,
-                FK_StatusID = viewModel.SelectedStatusId,
-                CreationDate = null
-            };
-
-            // Save project
+            // Save to DB
             db.Projects.Add(project);
             db.SaveChanges();
 
 
-            var assignedProjects = viewModel.SelectedStaffIds.Select(id => new AssignedProject
-            {
-                FK_StaffID = id,
-                FK_ProjectID = project.ProjectID
-            });
-
+            // Assigning multiple staff to the same project
+            var assignedProjectsModel = new AssignedProjectsViewModel();
+            var assignedProjects = assignedProjectsModel.CopyToModel(viewModel, project.ProjectID);
 
             // Save assigned project
             db.AssignedProjects.AddRange(assignedProjects);

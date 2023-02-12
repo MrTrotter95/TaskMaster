@@ -416,6 +416,12 @@ p {
     width: 20px;
 }
 
+.svg-label-image-sm {
+    margin: 0 5px 0 0;
+    height: 10px;
+    width: 10px;
+}
+
 .svg-color-red {
     filter: invert(39%) sepia(90%) saturate(1627%) hue-rotate(333deg) brightness(107%) contrast(108%);
 }
@@ -2767,7 +2773,7 @@ progress {
     font-weight: 600;
     border-radius: 6px;
     border: solid 1px black;
-    width: 500px;
+    width: 500px !important;
 }
 
 .form-control-lg:focus {
@@ -5074,7 +5080,7 @@ textarea.form-control-lg {
     position: relative;
     display: flex;
     flex-direction: column;
-    min-width: 0;
+    min-width: 100%;
     height: var(--bs-card-height);
     word-wrap: break-word;
     background-color: var(--bs-card-bg);
@@ -5105,7 +5111,7 @@ textarea.form-control-lg {
     --bs-card-img-overlay-padding: 1rem;
     --bs-card-group-margin: 0.75rem;
     position: relative;
-    min-width: 0;
+    min-width: 340px !important;
     height: var(--bs-card-height);
     background-color: var(--bs-card-bg);
     background-clip: border-box;
