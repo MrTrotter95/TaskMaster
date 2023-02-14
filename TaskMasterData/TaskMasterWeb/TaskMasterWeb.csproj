@@ -222,6 +222,7 @@
     <Content Include="Content\Images\arrow-down-circle.svg" />
     <Content Include="Content\Images\arrow-left-circle.svg" />
     <Content Include="Content\Images\arrow-left.svg" />
+    <Content Include="Content\Images\arrow-right.svg" />
     <Content Include="Content\Images\bullseye.svg" />
     <Content Include="Content\Images\calendar3.svg" />
     <Content Include="Content\Images\caret-down-fill.svg" />
@@ -236,6 +237,7 @@
     <Content Include="Content\Images\person-circle.svg" />
     <Content Include="Content\Images\person-plus-fill.svg" />
     <Content Include="Content\Images\person.svg" />
+    <Content Include="Content\Images\profileimage.jpg" />
     <Content Include="Content\Images\search.svg" />
     <Content Include="Content\Images\telephone-fill.svg" />
     <Content Include="Content\Images\telephone.svg" />
