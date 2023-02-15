@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TaskMasterWeb.Models;
-using TaskMasterWeb.ViewModels.Client;
+using TaskMasterWeb.ViewModels.Clients;
 
 namespace TaskMasterWeb.Controllers
 {
@@ -26,7 +26,7 @@ namespace TaskMasterWeb.Controllers
         {
             var viewModel = new ClientDetailsViewModel(id);
 
-            var cantFindClient =  db.Clients.Find(id);
+            var cantFindClient = db.Clients.Find(id);
             if (cantFindClient == null)
             {
                 return HttpNotFound();
@@ -37,24 +37,29 @@ namespace TaskMasterWeb.Controllers
         // GET: Clients/Create
         public ActionResult Create()
         {
-            return View();
+            var viewModel = new ClientCreateViewModel();
+
+            return View(viewModel);
         }
 
-        // POST: Clients/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClientID,CompanyName,EmailAddress,ContactNumber")] Client client)
+        public ActionResult Create(ClientCreateViewModel viewModel)
         {
-            if (ModelState.IsValid)
+
+            if (!ModelState.IsValid)
             {
-                db.Clients.Add(client);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                viewModel = new ClientCreateViewModel();
+                return View(viewModel);
             }
 
-            return View(client);
+
+            var client = viewModel.CopyToModel(viewModel);
+
+            db.Clients.Add(client);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Clients/Edit/5

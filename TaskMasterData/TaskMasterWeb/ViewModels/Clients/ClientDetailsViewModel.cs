@@ -7,7 +7,7 @@ using TaskMasterWeb.Models;
 using TaskMasterWeb.ViewModels.Projects;
 using TaskMasterWeb.Repositories;
 
-namespace TaskMasterWeb.ViewModels.Client
+namespace TaskMasterWeb.ViewModels.Clients
 {
     public class ClientDetailsViewModel
     {

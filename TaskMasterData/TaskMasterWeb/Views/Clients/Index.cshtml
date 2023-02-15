@@ -4,9 +4,19 @@
     ViewBag.Title = "Index";
 }
 
+
 <h1 class="fw-bold white title-text">Your Clients</h1>
 <hr />
 <div class="d-flex flex-wrap gap-4 mgt-50">
+    <div id="addClientForm" style="display:none;">
+        @Html.Partial("CreateClientCard", new TaskMasterWeb.ViewModels.Clients.ClientCreateViewModel())
+    </div>
+    
+    <div id="addClientDiv" class="d-flex flex-column col-md-4 card-custom-small bg-dark-gray-new justify-content-center align-items-center">
+
+        <img class="svg-card-button-lg svg-color-orange mgb-30" src="@Url.Content("~/Content/Images/plus-circle.svg")" alt="Add Client" onclick="showAddClientForm();" style="cursor: pointer;" />
+        <h4 class="fw-semibold orange-new pt-2">Add Client</h4>
+    </div>
     @foreach (var item in Model)
     {
         <div class="col-md-4 card-custom-small bg-dark-gray-new">
@@ -23,3 +33,13 @@
         </div>
     }
 </div>
+
+@{ 
+    <script>
+        function showAddClientForm() {
+            // hide the add client button and show the form
+            document.getElementById("addClientForm").style.display = "block";
+            document.getElementById("addClientDiv").style.display = "none";
+        }
+    </script>
+}

@@ -193,8 +193,9 @@
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Repositories\StaffRepository.cs" />
     <Compile Include="Repositories\ProjectStatusRepository.cs" />
-    <Compile Include="ViewModels\Client\ClientDetailsViewModel.cs" />
-    <Compile Include="ViewModels\Client\ClientDirectoryViewModel.cs" />
+    <Compile Include="ViewModels\Clients\ClientCreateViewModel.cs" />
+    <Compile Include="ViewModels\Clients\ClientDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Clients\ClientDirectoryViewModel.cs" />
     <Compile Include="ViewModels\Projects\AssignedProjectsViewModel.cs" />
     <Compile Include="ViewModels\Projects\ProjectCreateViewModel.cs" />
     <Compile Include="ViewModels\Projects\ProjectStatusCountViewModel.cs" />
@@ -237,6 +238,10 @@
     <Content Include="Content\Images\person-circle.svg" />
     <Content Include="Content\Images\person-plus-fill.svg" />
     <Content Include="Content\Images\person.svg" />
+    <Content Include="Content\Images\plus-circle-fill.svg" />
+    <Content Include="Content\Images\plus-circle.svg" />
+    <Content Include="Content\Images\plus-square-fill.svg" />
+    <Content Include="Content\Images\plus-square.svg" />
     <Content Include="Content\Images\profileimage.jpg" />
     <Content Include="Content\Images\search.svg" />
     <Content Include="Content\Images\telephone-fill.svg" />
@@ -363,6 +368,7 @@
     <Content Include="Views\ProjectFIeldsTypes\Details.cshtml" />
     <Content Include="Views\ProjectFIeldsTypes\Edit.cshtml" />
     <Content Include="Views\ProjectFIeldsTypes\Index.cshtml" />
+    <Content Include="Views\Clients\CreateClientCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
