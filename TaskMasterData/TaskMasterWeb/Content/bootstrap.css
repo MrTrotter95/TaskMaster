@@ -88,6 +88,10 @@
     }
 }
 
+.hidden {
+    display: none !important;
+}
+
 /*-------------START OF CUSTOM CSS-------------*/
 .logo-text {
     font-family: Yeseva One;
@@ -249,6 +253,40 @@ p {
     color: #309393;
 }
 
+.custom-input {
+    display: block;
+    width: 100%;
+    padding: 6px 0px 8px 15px !important;
+    font-weight: 400;
+    background-color: #0a0a0a !important;
+    border: none;
+    border-radius: 6px;
+    color: #828284 !important;
+    font-size: 16px !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: box-shadow 0.25s ease-in-out, background-color 0.5s ease-in-out;
+    outline: none;
+}
+
+    .custom-input::placeholder {
+        color: #828284;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .custom-input:hover {
+        background-color: #232228 !important;
+        cursor: pointer;
+    }
+
+    .custom-input:focus {
+        background-color: #0a0a0a !important;
+        color: none;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(130, 130, 132, 0.25);
+    }
+
 .input {
     background-color: #3b3a40 !important;
     border: none;
@@ -287,6 +325,28 @@ p {
 .svg-card-button-lg {
     height: 80px;
     width: 80px;
+    filter: invert(67%) sepia(48%) saturate(483%) hue-rotate(352deg) brightness(103%) contrast(99%);
+    transition: filter 0.5s ease-in-out;
+}
+
+    .svg-card-button-lg:hover {
+        cursor: pointer;
+        filter: invert(39%) sepia(90%) saturate(1627%) hue-rotate(333deg) brightness(107%) contrast(108%);
+    }
+
+.transistion-card:hover {
+    cursor: pointer;
+    /*box-shadow: rgba(130, 130, 132, 0.16) 0px 10px 25px 0px, rgba(130, 130, 132, 0.06) 0px 0px 0px 1px;*/
+    border: 1px solid #FF5151;
+}
+
+.transistion-client-card:hover {
+    cursor: pointer;
+    background-color: #232228 !important;
+}
+
+.transistion-red:hover > img {
+    filter: invert(39%) sepia(90%) saturate(1627%) hue-rotate(333deg) brightness(107%) contrast(108%);
 }
 
 .svg-color-red {
@@ -299,6 +359,7 @@ p {
 
 .svg-color-orange {
     filter: invert(67%) sepia(48%) saturate(483%) hue-rotate(352deg) brightness(103%) contrast(99%);
+    transition: filter 0.5s ease-in-out;
 }
 
 .svg-color-teal {
@@ -3661,7 +3722,6 @@ textarea.form-control-lg {
 }
 
 .btn:hover {
-
 }
 
 .btn-check + .btn:hover {
@@ -5225,7 +5285,7 @@ textarea.form-control-lg {
     --bs-card-group-margin: 0.75rem;
     position: relative;
     width: 340px !important;
-    height: var(--bs-card-height);
+    height: 510px !important;
     background-color: var(--bs-card-bg);
     background-clip: border-box;
     border-radius: 6px;
@@ -5256,6 +5316,65 @@ textarea.form-control-lg {
     height: var(--bs-card-height);
     background-color: var(--bs-card-bg);
     background-clip: border-box;
+    border: 2px solid #232228 !important;
+    border-radius: 6px;
+    padding: 15px 20px 20px 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: all 0.5s ease-in-out;
+}
+
+.client-display-card {
+    --bs-card-spacer-y: 1rem;
+    --bs-card-spacer-x: 1rem;
+    --bs-card-title-spacer-y: 0.5rem;
+    --bs-card-inner-border-radius: calc(0.375rem - 1px);
+    --bs-card-img-overlay-padding: 1rem;
+    --bs-card-group-margin: 0.75rem;
+    position: relative;
+    width: 300px !important;
+    height: 435px !important;
+    background-color: #0a0a0a !important;
+    background-clip: border-box;
+    border: 1px solid #232228 !important;
+    border-radius: 6px;
+    padding: 15px 20px 20px 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: all 0.25s ease-in-out;
+}
+
+.add-client-card {
+    --bs-card-spacer-y: 1rem;
+    --bs-card-spacer-x: 1rem;
+    --bs-card-title-spacer-y: 0.5rem;
+    --bs-card-inner-border-radius: calc(0.375rem - 1px);
+    --bs-card-img-overlay-padding: 1rem;
+    --bs-card-group-margin: 0.75rem;
+    position: relative;
+    width: 300px !important;
+    height: 435px !important;
+    background-color: #0a0a0a !important;
+    background-clip: border-box;
+    border: 1px solid #232228 !important;
+    border-radius: 6px;
+    padding: 15px 20px 20px 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: all 0.25s ease-in-out;
+}
+
+
+.create-client-card {
+    --bs-card-spacer-y: 1rem;
+    --bs-card-spacer-x: 1rem;
+    --bs-card-title-spacer-y: 0.5rem;
+    --bs-card-inner-border-radius: calc(0.375rem - 1px);
+    --bs-card-img-overlay-padding: 1rem;
+    --bs-card-group-margin: 0.75rem;
+    position: relative;
+    width: 625px !important;
+    height: 435px !important;
+    background-color: #0a0a0a !important;
+    background-clip: border-box;
+    border: 2px solid #232228 !important;
     border-radius: 6px;
     padding: 15px 20px 20px 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -8435,7 +8554,7 @@ textarea.form-control-lg {
 }
 
 .d-flex {
-    display: flex !important;
+    display: flex;
 }
 
 .d-inline-flex {

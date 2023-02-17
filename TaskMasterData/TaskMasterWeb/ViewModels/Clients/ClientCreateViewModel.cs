@@ -20,14 +20,8 @@ namespace TaskMasterWeb.ViewModels.Clients
 
         [Display(Name = "Address")]
         public string StreetAddress { get; set; }
-
-        [Display(Name = "Suburb")]
         public string Suburb { get; set; }
-
-        [Display(Name = "City")]
         public string City { get; set; }
-
-        [Display(Name = "Country")]
         public string Country { get; set; }
 
 

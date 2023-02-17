@@ -369,6 +369,7 @@
     <Content Include="Views\ProjectFIeldsTypes\Edit.cshtml" />
     <Content Include="Views\ProjectFIeldsTypes\Index.cshtml" />
     <Content Include="Views\Clients\CreateClientCard.cshtml" />
+    <Content Include="Views\ClientContacts\CreateClientContactCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
