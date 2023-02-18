@@ -5,31 +5,32 @@
 }
 
 
-<h1 class="fw-bold white title-text">Your Clients</h1>
-<hr />
-<div class="d-flex flex-wrap gap-4 mgt-50">
+<h1 class="fw-bold red title-text">Your Clients</h1>
+<div class="d-flex flex-wrap gap-4 mgt-20">
     <div id="addClientForm" style="display:none;">
         @Html.Partial("CreateClientCard", new TaskMasterWeb.ViewModels.Clients.ClientCreateViewModel())
     </div>
     
-    <div id="addClientDiv" class="d-flex flex-column col-md-4 add-client-card bg-dark-gray-new justify-content-center align-items-center transistion-card transistion-red" onclick="showAddClientForm();">
+    <div id="addClientDiv" class="d-flex flex-column col-md-4 add-client-card justify-content-center align-items-center" onclick="showAddClientForm();">
         <img class="svg-card-button-lg mgb-30" src="@Url.Content("~/Content/Images/plus-circle.svg")" alt="Add Client"/>
-        <h4 class="fw-semibold orange-new pt-2">Add Client</h4>
+        <h4 class="fw-semibold red pt-2">Add Client</h4>
     </div>
     @foreach (var item in Model)
     {
-        <div class="col-md-4 client-display-card bg-dark-gray-new transistion-client-card">
+        <div class="col-md-4 client-display-card">
             <a href="@Url.Action("Details", "Clients", new { id = item.ClientID })" style="text-decoration: none;">
                 <div>
                     <div class="d-flex justify-content-center mgt-30 img-container">
                         <img class="profile-image" src="@Url.Content("~/Content/Images/profileimage.jpg")" />
                     </div>
-                    <div class="d-flex justify-content-center mgb-100 mgt-30">
-                        <h4 class="fw-semibold orange-new pt-2" style="text-decoration: none;">@item.CompanyName</h4>
+
+                    <div class="d-flex justify-content-center mgb-120 mgt-30">
+                        <h4 class="fw-semibold black-new pt-2" style="text-decoration: none;">@item.CompanyName</h4>
                     </div>
+
                     <div class="d-flex justify-content-end m-auto align-items-center">
-                        @Html.ActionLink("View", "Details", new { id = item.ClientID }, htmlAttributes: new { @class = "teal-new mgr-10" })
-                        <img class="svg-label-image svg-color-teal" src="@Url.Content("~/Content/Images/arrow-right.svg")" />
+                        @Html.ActionLink("View", "Details", new { id = item.ClientID }, htmlAttributes: new { @class = " mgr-10 red" })
+                        <img class="svg-label-image svg-color-red" src="@Url.Content("~/Content/Images/arrow-right.svg")" />
                     </div>
                 </div>
             </a>

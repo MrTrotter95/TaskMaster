@@ -6,90 +6,88 @@
 
 <div>
     <div class="d-flex align-items-center col-sm-2 mgb-20">
-        <img class="svg-label-image svg-color-orange mgr-10" src="@Url.Content("~/Content/Images/arrow-left-circle.svg")" />
-        @Html.ActionLink("Clients", "Index", new { }, htmlAttributes: new { @class = "orange-new" })
+        <img class="svg-label-image svg-color-red mgr-10" src="@Url.Content("~/Content/Images/arrow-left-circle.svg")" />
+        @Html.ActionLink("Clients", "Index", new { }, htmlAttributes: new { @class = "red" })
     </div>
 
     <div class="d-flex justify-content-between align-items-center">
-        <h1 class="fw-bold white title-text">Details</h1>
-        @Html.ActionLink("Edit Contact", "Edit", new { id = Model.ClientID }, htmlAttributes: new { @class = "btn btn-primary sml-btn fw-normal", @role = "button" })
+        <h1 class="fw-bold red title-text">Client Details</h1>
+        @Html.ActionLink("Edit Contact", "Edit", new { id = Model.ClientID }, htmlAttributes: new { @class = "btn sml-btn", @role = "button" })
     </div>
-    <hr />
 
-    <div class="card-custom-no-flex bg-dark-gray-new">
-        <h1 class="fw-semibold orange-new pt-2 mgb-20">@Html.DisplayFor(model => model.CompanyName)</h1>
+    <div class="client-details-card-wide pdl-30 mgt-20">
+        <h1 class="fw-semibold black-new pt-2 mgb-20">@Html.DisplayFor(model => model.CompanyName)</h1>
 
         <div class="d-flex align-items-center mgb-20">
             <div class="d-flex align-items-center col-sm-2">
-                <img class="svg-label-image svg-color-orange mgr-10" src="@Url.Content("~/Content/Images/envelope-at.svg")" />
-                <p class="light-gray-new mb-0">Primary Email: </p>
+                <img class="svg-label-image svg-color-red mgr-10" src="@Url.Content("~/Content/Images/envelope-at.svg")" />
+                <p class="black-new mb-0">Primary Email: </p>
             </div>
 
-            <p class="white fw-normal col-md-1 mb-0">@Html.DisplayFor(model => model.EmailAddress)</p>
+            <p class="black-new fw-normal col-md-1 mb-0">@Html.DisplayFor(model => model.EmailAddress)</p>
         </div>
 
         <div class="d-flex align-items-center mgb-20">
             <div class="d-flex align-items-center col-sm-2">
-                <img class="svg-label-image svg-color-orange mgr-10" src="@Url.Content("~/Content/Images/telephone.svg")" />
-                <p class="light-gray-new mb-0">Primary Phone: </p>
+                <img class="svg-label-image svg-color-red mgr-10" src="@Url.Content("~/Content/Images/telephone.svg")" />
+                <p class="black-new mb-0">Primary Phone: </p>
             </div>
 
-            <p class="white fw-normal mb-0">@Html.DisplayFor(model => model.ContactNumber)</p>
+            <p class="black-new fw-normal mb-0">@Html.DisplayFor(model => model.ContactNumber)</p>
         </div>
 
         <div class="d-flex align-items-center mgb-20">
             <div class="d-flex align-items-center col-sm-2">
-                <img class="svg-label-image-sm svg-color-orange mgr-15" src="@Url.Content("~/Content/Images/circle-fill.svg")" />
-                <p class="light-gray-new mb-0">StreetAddress: </p>
+                <img class="svg-label-image-sm svg-color-red mgr-15" src="@Url.Content("~/Content/Images/circle-fill.svg")" />
+                <p class="black-new mb-0">StreetAddress: </p>
             </div>
 
-            <p class="white fw-normal mb-0">@Html.DisplayFor(model => model.StreetAddress)</p>
+            <p class="black-new fw-normal mb-0">@Html.DisplayFor(model => model.StreetAddress)</p>
         </div>
 
         <div class="d-flex align-items-center mgb-20">
             <div class="d-flex align-items-center col-sm-2">
-                <img class="svg-label-image-sm svg-color-orange mgr-15" src="@Url.Content("~/Content/Images/circle-fill.svg")" />
-                <p class="light-gray-new mb-0">Suburb: </p>
+                <img class="svg-label-image-sm svg-color-red mgr-15" src="@Url.Content("~/Content/Images/circle-fill.svg")" />
+                <p class="black-new mb-0">Suburb: </p>
             </div>
 
-            <p class="white fw-normal mb-0">@Html.DisplayFor(model => model.Suburb)</p>
+            <p class="black-new fw-normal mb-0">@Html.DisplayFor(model => model.Suburb)</p>
         </div>
 
         <div class="d-flex align-items-center mgb-20">
             <div class="d-flex align-items-center col-sm-2">
-                <img class="svg-label-image-sm svg-color-orange mgr-15" src="@Url.Content("~/Content/Images/circle-fill.svg")" />
-                <p class="light-gray-new mb-0">City: </p>
+                <img class="svg-label-image-sm svg-color-red mgr-15" src="@Url.Content("~/Content/Images/circle-fill.svg")" />
+                <p class="black-new mb-0">City: </p>
             </div>
 
-            <p class="white fw-normal mb-0">@Html.DisplayFor(model => model.City)</p>
+            <p class="black-new fw-normal mb-0">@Html.DisplayFor(model => model.City)</p>
         </div>
 
         <div class="d-flex align-items-center mgb-20">
             <div class="d-flex align-items-center col-sm-2">
-                <img class="svg-label-image-sm svg-color-orange mgr-15" src="@Url.Content("~/Content/Images/circle-fill.svg")" />
-                <p class="light-gray-new mb-0">Country: </p>
+                <img class="svg-label-image-sm svg-color-red mgr-15" src="@Url.Content("~/Content/Images/circle-fill.svg")" />
+                <p class="black-new mb-0">Country: </p>
             </div>
 
-            <p class="white fw-normal mb-0">@Html.DisplayFor(model => model.Country)</p>
+            <p class="black-new fw-normal mb-0">@Html.DisplayFor(model => model.Country)</p>
         </div>
     </div>
 </div>
 
 
-<div class="mgt-50">
+<div class="mgt-100">
     <div class="d-flex justify-content-between align-items-center">
-        <h1 class="fw-bold white title-text">Projects</h1>
+        <h1 class="fw-bold red title-text">Projects</h1>
         @Html.ActionLink("Add Project", "Create", "Projects", new { }, htmlAttributes: new { @class = "btn btn-primary sml-btn fw-normal", @role = "button" })
     </div>
-    <hr />
 
-    <div class="card-custom-no-flex bg-dark-gray-new">
+    <div class="client-details-card-wide mgt-20">
         <div class="d-flex gap-5 mgl-20">
             @foreach (var stat in Model.ProjectStatusCount)
             {
                 <div class="d-flex align-items-center">
-                    <h3 class="fw-semibold teal-new pt-2 mgr-10">@stat.ProjectCount</h3>
-                    <p class="mb-0 light-gray-new">@stat.StatusValue</p>
+                    <h3 class="fw-semibold red pt-2 mgr-10">@stat.ProjectCount</h3>
+                    <p class="mb-0 black-new">@stat.StatusValue</p>
                 </div>
             }
         </div>
@@ -97,10 +95,10 @@
         <table class="table table-hover">
             <thead>
                 <tr class="h6">
-                    <th class="pdt-20 pdl-20 pdb-15 orange-new fw-semibold">
+                    <th class="pdt-20 pdl-20 pdb-15 black-new">
                         @Html.DisplayNameFor(model => model.Projects)
                     </th>
-                    <th class="pdt-20 pdb-15 orange-new fw-semibold">
+                    <th class="pdt-20 pdb-15 black-new">
                         Project Status
                     </th>
                 </tr>
@@ -110,9 +108,9 @@
                 {
                     <tr class="table-hover">
                         <td class="pdl-20 pdt-15 pdb-15">
-                            @Html.ActionLink(item.ProjectName, "Details", "Projects", new { id = item.ProjectID }, new { @class = "light-gray-new" })
+                            @Html.ActionLink(item.ProjectName, "Details", "Projects", new { id = item.ProjectID }, new { @class = "red" })
                         </td>
-                        <td class="pdt-15 pdb-15 light-gray-new">
+                        <td class="pdt-15 pdb-15 black">
                             @Html.DisplayFor(modelItem => item.ProjectStatus.StatusValue)
                         </td>
                     </tr>
@@ -123,53 +121,55 @@
 </div>
 
 
-<div class="mgt-50 pb-5">
+<div class="mgt-100 pb-5">
     <div class="d-flex justify-content-between align-items-center">
-        <h1 class="fw-bold white title-text">Client Contacts</h1>
-        @Html.ActionLink("Add Contact", "Create", "ClientContacts", new TaskMasterWeb.Models.ClientContact(), htmlAttributes: new { @class = "btn btn-primary sml-btn fw-normal", @role = "button" })
+        <h1 class="fw-bold red title-text">Client Contacts</h1>
+        @Html.ActionLink("Add Contact", "Create", "ClientContacts", new TaskMasterWeb.Models.ClientContact(), htmlAttributes: new { @class = "btn sml-btn", @role = "button" })
     </div>
-    <hr />
-    <div class="d-flex flex-wrap gap-4 ">
+    <hr class="mgt-20" />
+    <div class="d-flex flex-wrap gap-4 mgt-50">
         <div id="addClientContactForm" style="display:none;">
             @Html.Partial("~/Views/ClientContacts/CreateClientContactCard.cshtml", new TaskMasterWeb.Models.ClientContact())
         </div>
 
-        <div id="addClientContactDiv" class="d-flex flex-column client-contact-card bg-dark-gray-new justify-content-center align-items-center">
-            <img class="svg-card-button-lg svg-color-orange mgb-30" src="@Url.Content("~/Content/Images/plus-circle.svg")" alt="Add Client" onclick="showAddClientForm();" style="cursor: pointer;" />
-            <h4 class="fw-semibold orange-new pt-2">Add Client Contact</h4>
+        <div id="addClientContactDiv" class="d-flex flex-column add-client-contact-card justify-content-center align-items-center" onclick="showAddClientForm();">
+            <img class="svg-card-button-lg svg-color-red mgb-30" src="@Url.Content("~/Content/Images/plus-circle.svg")" alt="Add Client" style="cursor: pointer;" />
+            <h4 class="fw-semibold red pt-2">Add Client Contact</h4>
         </div>
 
         @foreach (var contact in Model.ClientContacts)
         {
             <div class="col-md-4 client-contact-card bg-dark-gray-new">
-                <div class="d-flex justify-content-center mgt-30 img-container">
-                    <img class="profile-image" src="@Url.Content("~/Content/Images/profileimage.jpg")" />
-                </div>
-                <div class="d-flex justify-content-center mgb-50 mgt-30">
-                    <h4 class="fw-semibold orange-new pt-2">@contact.FirstName @contact.LastName</h4>
-                </div>
-                <hr class="mgt-0 mgb-20 border-2 border-bottom" />
-                <div class="d-flex align-items-center mgb-20">
-                    <div class="d-flex align-items-center col-sm-5">
-                        <img class="svg-label-image svg-color-orange mgr-10" src="@Url.Content("~/Content/Images/envelope-at.svg")" />
-                        <p class="fw-semibold light-gray-new mb-0">Email: </p>
+                <a href="@Url.Action("Edit", "Clients", new { id = contact.ContactID })" style="text-decoration: none;">
+                    <div class="d-flex justify-content-center mgt-30 img-container">
+                        <img class="profile-image" src="@Url.Content("~/Content/Images/profileimage.jpg")" />
+                    </div>
+                    <div class="d-flex justify-content-center mgb-50 mgt-30">
+                        <h4 class="black-new pt-2">@contact.FirstName @contact.LastName</h4>
+                    </div>
+                    <hr class="mgt-0 mgb-20 border-red" />
+                    <div class="d-flex align-items-center mgb-20">
+                        <div class="d-flex align-items-center col-sm-5">
+                            <img class="svg-label-image svg-color-red mgr-10" src="@Url.Content("~/Content/Images/envelope-at.svg")" />
+                            <p class="black-new mb-0">Email: </p>
+                        </div>
+
+                        <p class="black-new fw-normal mb-0">@contact.EmailAddress</p>
                     </div>
 
-                    <p class="white fw-normal mb-0">@contact.EmailAddress</p>
-                </div>
+                    <div class="d-flex align-items-center mgb-20">
+                        <div class="d-flex align-items-center col-sm-5">
+                            <img class="svg-label-image svg-color-red mgr-10" src="@Url.Content("~/Content/Images/telephone.svg")" />
+                            <p class="black-new mb-0">Contact Number: </p>
+                        </div>
 
-                <div class="d-flex align-items-center mgb-20">
-                    <div class="d-flex align-items-center col-sm-5">
-                        <img class="svg-label-image svg-color-orange mgr-10" src="@Url.Content("~/Content/Images/telephone.svg")" />
-                        <p class="fw-semibold light-gray-new mb-0">Contact Number: </p>
+                        <p class="black-new fw-normal mb-0">@contact.ContactNumber</p>
                     </div>
-
-                    <p class="white fw-normal mb-0">@contact.ContactNumber</p>
-                </div>
-                <div class="d-flex justify-content-end m-auto align-items-center">
-                    @Html.ActionLink("Edit", "Edit", "ClientContacts", new { id = contact.ContactID }, htmlAttributes: new { @class = "teal-new" })
-                    <img class="svg-label-image svg-color-teal" src="@Url.Content("~/Content/Images/arrow-right.svg")" />
-                </div>
+                    <div class="d-flex justify-content-end m-auto align-items-center">
+                        @Html.ActionLink("Edit", "Edit", "ClientContacts", new { id = contact.ContactID }, htmlAttributes: new { @class = "red" })
+                        <img class="svg-label-image svg-color-red mgl-10" src="@Url.Content("~/Content/Images/arrow-right.svg")" />
+                    </div>
+                </a>
             </div>
         }
     </div>
@@ -184,4 +184,5 @@
             document.getElementById("addClientContactDiv").style.display = "none";
         }
     </script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
 }
