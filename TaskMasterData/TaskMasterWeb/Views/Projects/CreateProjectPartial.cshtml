@@ -5,13 +5,14 @@
 }
 
 
-@using (Html.BeginForm("Create", "Project", FormMethod.Post))
+@using (Html.BeginForm("Create", "Projects", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 <div class="mgt-20 form-horizontal client-contact-card">
     <div>
         <h4 class="fw-semibold black-new pt-2">New Project</h4>
     </div>
+    @Html.HiddenFor(model => model.SelectedClientId)
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="mgl-20 mgt-20">
         <div class="form-group mgb-15">
@@ -22,13 +23,13 @@
             </div>
         </div>
 
-        <div class="form-group mgb-15">
+        @*<div class="form-group mgb-15">
             <div class="d-flex align-items-center ">
                 <img class="svg-label-image svg-color-red mgr-5" src="@Url.Content("~/Content/Images/person-add.svg")" />
                 @Html.DropDownListFor(model => model.SelectedClientId, Model.ClientSelectList, htmlAttributes: new { @class = "custom-input-white" })
                 @Html.ValidationMessageFor(model => model.ClientSelectList, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group mgb-15">
             <div class="d-flex align-items-center ">

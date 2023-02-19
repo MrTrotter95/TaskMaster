@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TaskMasterWeb.ViewModels.ClientContacts;
 
 namespace TaskMasterWeb.Models
 {
@@ -38,26 +39,38 @@ namespace TaskMasterWeb.Models
         // GET: ClientContacts/Create
         public ActionResult Create()
         {
-            ViewBag.FK_ClientID = new SelectList(db.Clients, "ClientID", "CompanyName");
-            return View();
+            var viewModel = new ClientContactCreateViewModel();
+
+            return View(viewModel);
         }
 
-        // POST: ClientContacts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // GET: ClientContacts/Create
+        public ActionResult Create(int fk_ClientID)
+        {
+            var viewModel = new ClientContactCreateViewModel(fk_ClientID);
+
+            return View(viewModel);
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ContactID,FK_ClientID,FirstName,LastName,EmailAddress,ContactNumber")] ClientContact clientContact)
+        public ActionResult Create(ClientContactCreateViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.ClientContacts.Add(clientContact);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                viewModel = new ClientContactCreateViewModel(viewModel.FK_ClientID);
+
+                return View(viewModel);
             }
 
-            ViewBag.FK_ClientID = new SelectList(db.Clients, "ClientID", "CompanyName", clientContact.FK_ClientID);
-            return View(clientContact);
+            var clientContact = viewModel.CopyToModel(viewModel);
+
+            // Save to DB
+            db.ClientContacts.Add(clientContact);
+            db.SaveChanges();
+
+            return RedirectToAction("Details", "Clients", new { id = viewModel.FK_ClientID });
         }
 
         // GET: ClientContacts/Edit/5

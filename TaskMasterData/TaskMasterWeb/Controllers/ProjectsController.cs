@@ -69,7 +69,7 @@ namespace TaskMasterWeb.Controllers
             db.AssignedProjects.AddRange(assignedProjects);
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Clients", new { id = viewModel.SelectedClientId });
         }
 
         // GET: Projects/Edit/5

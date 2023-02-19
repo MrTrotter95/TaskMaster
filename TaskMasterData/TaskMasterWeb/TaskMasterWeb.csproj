@@ -193,6 +193,7 @@
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Repositories\StaffRepository.cs" />
     <Compile Include="Repositories\ProjectStatusRepository.cs" />
+    <Compile Include="ViewModels\ClientContacts\ClientContactCreateViewModel.cs" />
     <Compile Include="ViewModels\Clients\ClientCreateViewModel.cs" />
     <Compile Include="ViewModels\Clients\ClientDetailsViewModel.cs" />
     <Compile Include="ViewModels\Clients\ClientDirectoryViewModel.cs" />

@@ -50,6 +50,30 @@ namespace TaskMasterWeb.ViewModels
             }).ToList();
         }
 
+        // Create project from Client/Details/ID view
+        public ProjectCreateViewModel(int clientID)
+        {
+            var staffRepository = new StaffRepository();
+            var projectStatusRepository = new ProjectStatusRepository();
+
+            var staff = staffRepository.GetAllStaff();
+            var projectStatuses = projectStatusRepository.GetAllProjectStatuses();
+
+            SelectedClientId = clientID;
+
+            StaffSelectList = staff.Select(s => new SelectListItem
+            {
+                Text = s.FirstName + " " + s.LastName,
+                Value = s.StaffID.ToString()
+            }).ToList();
+
+            StatusSelectList = projectStatuses.Select(p => new SelectListItem
+            {
+                Text = p.StatusValue,
+                Value = p.StatusID.ToString()
+            }).ToList();
+        }
+
         public Project CopyToModel(ProjectCreateViewModel viewModel)
         {
             var project = new Project

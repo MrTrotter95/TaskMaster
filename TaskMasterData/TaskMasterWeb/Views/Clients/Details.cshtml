@@ -12,7 +12,6 @@
 
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="fw-bold red title-text">Client Details</h1>
-        @Html.ActionLink("Edit Contact", "Edit", new { id = Model.ClientID }, htmlAttributes: new { @class = "btn sml-btn", @role = "button" })
     </div>
 
     <div class="client-details-card-wide pdl-30 mgt-20">
@@ -71,57 +70,67 @@
 
             <p class="black-new fw-normal mb-0">@Html.DisplayFor(model => model.Country)</p>
         </div>
+
+        <div class="d-flex justify-content-end m-auto align-items-center">
+            @Html.ActionLink("Edit", "Edit", "Clients", new { id = Model.ClientID }, htmlAttributes: new { @class = "red" })
+            <img class="svg-label-image svg-color-red mgl-10" src="@Url.Content("~/Content/Images/arrow-right.svg")" />
+        </div>
     </div>
+
 </div>
 
 
 <div class="mgt-100">
     <h1 class="fw-bold red title-text">Projects</h1>
 
-    <div class="client-details-card-wide mgt-20">
-        <div class="d-flex gap-5 mgl-20">
-            @foreach (var stat in Model.ProjectStatusCount)
-            {
-                <div class="d-flex align-items-center">
-                    <h3 class="fw-semibold red pt-2 mgr-10">@stat.ProjectCount</h3>
-                    <p class="mb-0 black-new">@stat.StatusValue</p>
-                </div>
-            }
+    @if (Model.Projects.Count > 0)
+    {
+        <div class="client-details-card-wide mgt-20">
+            <div class="d-flex gap-5 mgl-20">
+                @foreach (var stat in Model.ProjectStatusCount)
+                {
+                    <div class="d-flex align-items-center">
+                        <h3 class="fw-semibold red pt-2 mgr-10">@stat.ProjectCount</h3>
+                        <p class="mb-0 black-new">@stat.StatusValue</p>
+                    </div>
+                }
+            </div>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr class="h6">
+                        <th class="pdt-20 pdl-20 pdb-15 black-new">
+                            @Html.DisplayNameFor(model => model.Projects)
+                        </th>
+                        <th class="pdt-20 pdb-15 black-new">
+                            Project Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Projects)
+                    {
+                        <tr class="table-hover">
+                            <td class="pdl-20 pdt-15 pdb-15">
+                                @Html.ActionLink(item.ProjectName, "Details", "Projects", new { id = item.ProjectID }, new { @class = "red" })
+                            </td>
+                            <td class="pdt-15 pdb-15 black">
+                                @Html.DisplayFor(modelItem => item.ProjectStatus.StatusValue)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
 
-        <table class="table table-hover">
-            <thead>
-                <tr class="h6">
-                    <th class="pdt-20 pdl-20 pdb-15 black-new">
-                        @Html.DisplayNameFor(model => model.Projects)
-                    </th>
-                    <th class="pdt-20 pdb-15 black-new">
-                        Project Status
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Projects)
-                {
-                    <tr class="table-hover">
-                        <td class="pdl-20 pdt-15 pdb-15">
-                            @Html.ActionLink(item.ProjectName, "Details", "Projects", new { id = item.ProjectID }, new { @class = "red" })
-                        </td>
-                        <td class="pdt-15 pdb-15 black">
-                            @Html.DisplayFor(modelItem => item.ProjectStatus.StatusValue)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+    }
 
     <div id="js-add-project-card" class="add-project-card d-flex flex-column justify-content-center align-items-center mgt-20 pdt-20" onclick="showCreateProjectForm();">
         <img class="svg-card-button-lg svg-color-red mgb-30" src="@Url.Content("~/Content/Images/plus-circle.svg")" alt="Add Project" style="cursor: pointer;" />
         <h4 class="fw-semibold red pt-2">Add Project</h4>
     </div>
     <div id="js-add-project-form" style="display:none;">
-        @Html.Partial("~/Views/Projects/CreateProjectPartial.cshtml", new TaskMasterWeb.ViewModels.ProjectCreateViewModel())
+        @Html.Partial("~/Views/Projects/CreateProjectPartial.cshtml", new TaskMasterWeb.ViewModels.ProjectCreateViewModel(Model.ClientID))
     </div>
 </div>
 
@@ -130,8 +139,7 @@
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="fw-bold red title-text">Client Contacts</h1>
     </div>
-    <hr class="mgt-20" />
-    <div class="d-flex flex-wrap gap-4 mgt-50">
+    <div class="d-flex flex-wrap gap-4 mgt-20">
         <div id="addClientContactDiv" class="card-content add-client-contact-card" onclick="showAddClientForm();">
 
             <div class="card-front d-flex flex-column  justify-content-center align-items-center">
@@ -142,7 +150,7 @@
             </div>
 
             <div class="card-back">
-                @Html.Partial("~/Views/ClientContacts/CreateClientContactCard.cshtml", new TaskMasterWeb.Models.ClientContact())
+                @Html.Partial("~/Views/ClientContacts/CreateClientContactCard.cshtml", new TaskMasterWeb.ViewModels.ClientContacts.ClientContactCreateViewModel(Model.ClientID))
             </div>
         </div>
 
