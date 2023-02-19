@@ -7,14 +7,23 @@
 
 <h1 class="fw-bold red title-text">Your Clients</h1>
 <div class="d-flex flex-wrap gap-4 mgt-20">
-    <div id="addClientForm" style="display:none;">
-        @Html.Partial("CreateClientCard", new TaskMasterWeb.ViewModels.Clients.ClientCreateViewModel())
+    <div id="addClientDiv" class="add-client-card card-content-client" onclick="showAddClientForm();">
+
+        <div class="card-front d-flex flex-column justify-content-center align-items-center">
+            <div class="d-flex flex-column justify-content-center align-items-center translateZ-50" >
+                <img class="svg-card-button-lg mgb-30" src="@Url.Content("~/Content/Images/plus-circle.svg")" alt="Add Client" />
+                <h4 class="fw-semibold red pt-2">Add Client</h4>
+            </div>
+        </div>
+
+        <div class="card-back">
+            @Html.Partial("CreateClientCard", new TaskMasterWeb.ViewModels.Clients.ClientCreateViewModel())
+        </div>
+
     </div>
-    
-    <div id="addClientDiv" class="d-flex flex-column col-md-4 add-client-card justify-content-center align-items-center" onclick="showAddClientForm();">
-        <img class="svg-card-button-lg mgb-30" src="@Url.Content("~/Content/Images/plus-circle.svg")" alt="Add Client"/>
-        <h4 class="fw-semibold red pt-2">Add Client</h4>
-    </div>
+
+
+
     @foreach (var item in Model)
     {
         <div class="col-md-4 client-display-card">
@@ -38,12 +47,11 @@
     }
 </div>
 
-@{ 
+@{
     <script>
         function showAddClientForm() {
             // hide the add client button and show the form
-            document.getElementById("addClientForm").style.display = "block";
-            document.getElementById("addClientDiv").style.display = "none";
+            document.getElementById("addClientDiv").classList.add("rotate");
         }
     </script>
 }

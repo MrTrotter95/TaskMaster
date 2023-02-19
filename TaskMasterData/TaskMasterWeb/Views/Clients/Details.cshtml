@@ -76,10 +76,7 @@
 
 
 <div class="mgt-100">
-    <div class="d-flex justify-content-between align-items-center">
-        <h1 class="fw-bold red title-text">Projects</h1>
-        @Html.ActionLink("Add Project", "Create", "Projects", new { }, htmlAttributes: new { @class = "btn btn-primary sml-btn fw-normal", @role = "button" })
-    </div>
+    <h1 class="fw-bold red title-text">Projects</h1>
 
     <div class="client-details-card-wide mgt-20">
         <div class="d-flex gap-5 mgl-20">
@@ -118,23 +115,35 @@
             </tbody>
         </table>
     </div>
+
+    <div id="js-add-project-card" class="add-project-card d-flex flex-column justify-content-center align-items-center mgt-20 pdt-20" onclick="showCreateProjectForm();">
+        <img class="svg-card-button-lg svg-color-red mgb-30" src="@Url.Content("~/Content/Images/plus-circle.svg")" alt="Add Project" style="cursor: pointer;" />
+        <h4 class="fw-semibold red pt-2">Add Project</h4>
+    </div>
+    <div id="js-add-project-form" style="display:none;">
+        @Html.Partial("~/Views/Projects/CreateProjectPartial.cshtml", new TaskMasterWeb.ViewModels.ProjectCreateViewModel())
+    </div>
 </div>
 
 
-<div class="mgt-100 pb-5">
+<div class="mgt-50 pb-5">
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="fw-bold red title-text">Client Contacts</h1>
-        @Html.ActionLink("Add Contact", "Create", "ClientContacts", new TaskMasterWeb.Models.ClientContact(), htmlAttributes: new { @class = "btn sml-btn", @role = "button" })
     </div>
     <hr class="mgt-20" />
     <div class="d-flex flex-wrap gap-4 mgt-50">
-        <div id="addClientContactForm" style="display:none;">
-            @Html.Partial("~/Views/ClientContacts/CreateClientContactCard.cshtml", new TaskMasterWeb.Models.ClientContact())
-        </div>
+        <div id="addClientContactDiv" class="card-content add-client-contact-card" onclick="showAddClientForm();">
 
-        <div id="addClientContactDiv" class="d-flex flex-column add-client-contact-card justify-content-center align-items-center" onclick="showAddClientForm();">
-            <img class="svg-card-button-lg svg-color-red mgb-30" src="@Url.Content("~/Content/Images/plus-circle.svg")" alt="Add Client" style="cursor: pointer;" />
-            <h4 class="fw-semibold red pt-2">Add Client Contact</h4>
+            <div class="card-front d-flex flex-column  justify-content-center align-items-center">
+                <div class="d-flex flex-column align-items-center translateZ-50">
+                    <img class="svg-card-button-lg svg-color-red mgb-30" src="@Url.Content("~/Content/Images/plus-circle.svg")" alt="Add Client" style="cursor: pointer;" />
+                    <h4 class="fw-semibold red pt-2">Add Client Contact</h4>
+                </div>
+            </div>
+
+            <div class="card-back">
+                @Html.Partial("~/Views/ClientContacts/CreateClientContactCard.cshtml", new TaskMasterWeb.Models.ClientContact())
+            </div>
         </div>
 
         @foreach (var contact in Model.ClientContacts)
@@ -180,8 +189,13 @@
     <script>
         function showAddClientForm() {
             // hide the add client button and show the form
-            document.getElementById("addClientContactForm").style.display = "block";
-            document.getElementById("addClientContactDiv").style.display = "none";
+            //document.getElementById("addClientContactForm").style.display = "block";
+            document.getElementById("addClientContactDiv").classList.add("rotate");
+        }
+
+        function showCreateProjectForm() {
+            document.getElementById("js-add-project-form").style.display = "block";
+            document.getElementById("js-add-project-card").style.display = "none";
         }
     </script>
     <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
