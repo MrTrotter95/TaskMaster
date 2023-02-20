@@ -373,6 +373,7 @@
     <Content Include="Views\ClientContacts\CreateClientContactCard.cshtml" />
     <Content Include="Views\Projects\CreateProjectPartial.cshtml" />
     <Content Include="Views\ClientContacts\EditClientContactPartial.cshtml" />
+    <Content Include="Views\Clients\EditClientPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -812,7 +812,7 @@ p {
     background-clip: border-box;
     border-radius: 10px;
     padding: 15px 20px 20px 20px;
-    transition: all 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out, opacity 0.5s ease-in-out;
 }
 
     .add-project-card:hover {
@@ -821,6 +821,9 @@ p {
         box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
     }
 
+.hide-add-project-card {
+    opacity: 0;
+}
 
 
 .transistion-card:hover {

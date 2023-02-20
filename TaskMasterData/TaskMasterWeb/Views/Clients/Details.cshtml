@@ -76,7 +76,6 @@
             <img class="svg-label-image svg-color-red mgl-10" src="@Url.Content("~/Content/Images/arrow-right.svg")" />
         </div>
     </div>
-
 </div>
 
 
@@ -196,15 +195,31 @@
 @{
     <script>
         function showAddClientForm() {
-            // hide the add client button and show the form
-            //document.getElementById("addClientContactForm").style.display = "block";
             document.getElementById("addClientContactDiv").classList.add("rotate");
         }
 
         function showCreateProjectForm() {
-            document.getElementById("js-add-project-form").style.display = "block";
-            document.getElementById("js-add-project-card").style.display = "none";
+            document.getElementById("js-add-project-card").classList.add("hide-add-project-card");
+
+            setTimeout(function () {
+                // set initial opacity to 0 and display to block
+                document.getElementById("js-add-project-form").style.opacity = "0";
+                document.getElementById("js-add-project-form").style.display = "block";
+
+
+                // add transition to the opacity property
+                document.getElementById("js-add-project-form").style.transition = "opacity 0.5s ease-in-out";
+            }, 300);
+
+            setTimeout(function () {
+                document.getElementById("js-add-project-form").style.opacity = "1"; // set opacity to 1 after 500ms
+                document.getElementById("js-add-project-card").style.display = "none";
+            }, 500);
+
+
         }
+
+
     </script>
     <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
 }
