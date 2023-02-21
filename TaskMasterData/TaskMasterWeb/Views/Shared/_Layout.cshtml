@@ -11,44 +11,34 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <h1 class="logo-text mgl-20">T.M</h1>
-            @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn fw-semibold", @role = "button" })
-            @Html.ActionLink("Assigned Projects", "Index", "AssignedProjects", routeValues: null, htmlAttributes: new { @class = "btn fw-semibold", @role = "button" })
-            @Html.ActionLink("Project Fields", "Index", "ProjectFields", routeValues: null, htmlAttributes: new { @class = "btn fw-semibold", @role = "button" })
-            @Html.ActionLink("Field Types", "Index", "ProjectFieldsTypes", routeValues: null, htmlAttributes: new { @class = "btn fw-semibold", @role = "button" })
-            @Html.ActionLink("Projects", "Index", "Projects", routeValues: null, htmlAttributes: new { @class = "btn fw-semibold", @role = "button" })
-            @Html.ActionLink("Project Statuses", "Index", "ProjectStatus", routeValues: null, htmlAttributes: new { @class = "btn fw-semibold", @role = "button" })
-            @Html.ActionLink("Staff", "Index", "Staff", routeValues: null, htmlAttributes: new { @class = "btn fw-semibold", @role = "button" })
-            @Html.ActionLink("Staff Roles", "Index", "StaffRoles", routeValues: null, htmlAttributes: new { @class = "btn fw-semibold", @role = "button" })
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "red" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                        @Html.ActionLink("Assigned Projects", "Index", "AssignedProjects", routeValues: null, htmlAttributes: new { @class = "red" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
+                        @Html.ActionLink("Project Fields", "Index", "ProjectFields", routeValues: null, htmlAttributes: new { @class = "red" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Field Types", "Index", "ProjectFieldsTypes", routeValues: null, htmlAttributes: new { @class = "red" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Projects", "Index", "Projects", routeValues: null, htmlAttributes: new { @class = "red" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Project Statuses", "Index", "ProjectStatus", routeValues: null, htmlAttributes: new { @class = "red" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Staff", "Index", "Staff", routeValues: null, htmlAttributes: new { @class = "red" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Staff Roles", "Index", "StaffRoles", routeValues: null, htmlAttributes: new { @class = "red" })
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
             </div>
         </div>
     </nav>

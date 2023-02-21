@@ -6,8 +6,8 @@
 
 <div>
     <div class="d-flex align-items-center col-sm-2 mgb-20">
-        <img class="svg-label-image svg-color-red mgr-10" src="@Url.Content("~/Content/Images/arrow-left-circle.svg")" />
-        @Html.ActionLink("Clients", "Index", new { }, htmlAttributes: new { @class = "red" })
+        <img class="svg-label-image svg-color-teal mgr-10" src="@Url.Content("~/Content/Images/arrow-left-circle.svg")" />
+        @Html.ActionLink("Clients", "Index", new { }, htmlAttributes: new { @class = "teal-new" })
     </div>
 
     <div class="d-flex justify-content-between align-items-center">
@@ -72,8 +72,8 @@
         </div>
 
         <div class="d-flex justify-content-end m-auto align-items-center">
-            @Html.ActionLink("Edit", "Edit", "Clients", new { id = Model.ClientID }, htmlAttributes: new { @class = "red" })
-            <img class="svg-label-image svg-color-red mgl-10" src="@Url.Content("~/Content/Images/arrow-right.svg")" />
+            @Html.ActionLink("Edit", "Edit", "Clients", new { id = Model.ClientID }, htmlAttributes: new { @class = "teal-new" })
+            <img class="svg-label-image svg-color-teal mgl-10" src="@Url.Content("~/Content/Images/arrow-right.svg")" />
         </div>
     </div>
 </div>
@@ -89,7 +89,7 @@
                 @foreach (var stat in Model.ProjectStatusCount)
                 {
                     <div class="d-flex align-items-center">
-                        <h3 class="fw-semibold red pt-2 mgr-10">@stat.ProjectCount</h3>
+                        <h3 class="fw-semibold teal-new pt-2 mgr-10">@stat.ProjectCount</h3>
                         <p class="mb-0 black-new">@stat.StatusValue</p>
                     </div>
                 }
@@ -156,7 +156,7 @@
         @foreach (var contact in Model.ClientContacts)
         {
             <div class="col-md-4 client-contact-card bg-dark-gray-new">
-                <a href="@Url.Action("Edit", "Clients", new { id = contact.ContactID })" style="text-decoration: none;">
+                <a href="@Url.Action("Edit", "ClientContacts", new { id = contact.ContactID })" style="text-decoration: none;">
                     <div class="d-flex justify-content-center mgt-30 img-container">
                         <img class="profile-image" src="@Url.Content("~/Content/Images/profileimage.jpg")" />
                     </div>
@@ -182,8 +182,8 @@
                         <p class="black-new fw-normal mb-0">@contact.ContactNumber</p>
                     </div>
                     <div class="d-flex justify-content-end m-auto align-items-center">
-                        @Html.ActionLink("Edit", "Edit", "ClientContacts", new { id = contact.ContactID }, htmlAttributes: new { @class = "red" })
-                        <img class="svg-label-image svg-color-red mgl-10" src="@Url.Content("~/Content/Images/arrow-right.svg")" />
+                        @Html.ActionLink("Edit", "Edit", "ClientContacts", new { id = contact.ContactID }, htmlAttributes: new { @class = "teal-new" })
+                        <img class="svg-label-image svg-color-teal mgl-10" src="@Url.Content("~/Content/Images/arrow-right.svg")" />
                     </div>
                 </a>
             </div>

@@ -12,7 +12,7 @@
 <div class="client-details-card-wide pdl-30 mgt-20">
     <h4 class="fw-semibold black-new pt-2">Edit Client Details</h4>
     <div class="d-flex align-items-center mgb-15">
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center"> 
             <img class="svg-label-image svg-color-red mgr-10" src="@Url.Content("~/Content/Images/gear.svg")" />
             @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "custom-input-white", placeholder = "Company..." } })
             @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
