@@ -7,17 +7,17 @@
 
 <h1 class="fw-bold red title-text">Your Staff</h1>
 <div class="d-flex flex-wrap gap-4 mgt-20">
-    <div id="addClientDiv" class="add-client-card card-content-client" onclick="showAddClientForm();">
+    <div id="addEmployeeDiv" class="add-card-small card-content-3d" onclick="showAddEmployeeForm();">
 
         <div class="card-front d-flex flex-column justify-content-center align-items-center">
             <div class="d-flex flex-column justify-content-center align-items-center translateZ-50">
                 <img class="svg-card-button-lg mgb-30" src="@Url.Content("~/Content/Images/plus-circle.svg")" alt="Add Client" />
-                <h4 class="fw-semibold red pt-2">Add Staff</h4>
+                <h4 class="fw-semibold red pt-2">Add Employee</h4>
             </div>
         </div>
 
         <div class="card-back">
-            @*@Html.Partial("CreateClientCard", new TaskMasterWeb.ViewModels.Clients.ClientCreateViewModel())*@
+            @Html.Partial("CreateEmployeePartial", new TaskMasterWeb.ViewModels.Employees.EmployeeCreateViewModel())
         </div>
 
     </div>
@@ -59,9 +59,9 @@
 
 @{
     <script>
-        function showAddClientForm() {
-            // hide the add client button and show the form
-            document.getElementById("addClientDiv").classList.add("rotate");
+        function showAddEmployeeForm() {
+            // hide the add Employee button and show the form
+            document.getElementById("addEmployeeDiv").classList.add("rotate");
         }
     </script>
 }

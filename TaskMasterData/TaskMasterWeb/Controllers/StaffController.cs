@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TaskMasterWeb.Models;
+using TaskMasterWeb.ViewModels.Employees;
 
 namespace TaskMasterWeb.Controllers
 {
@@ -39,26 +40,30 @@ namespace TaskMasterWeb.Controllers
         // GET: Staff/Create
         public ActionResult Create()
         {
-            ViewBag.FK_StaffRoleID = new SelectList(db.StaffRoles, "StaffRoleID", "RoleName");
-            return View();
+            var viewModel = new EmployeeCreateViewModel();
+
+            return View(viewModel);
         }
 
-        // POST: Staff/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StaffID,FK_StaffRoleID,FirstName,LastName,ContactNumber,EmailAddress")] Staff staff)
+        public ActionResult Create(EmployeeCreateViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Staffs.Add(staff);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                viewModel = new EmployeeCreateViewModel();
+
+                return View(viewModel);
             }
 
-            ViewBag.FK_StaffRoleID = new SelectList(db.StaffRoles, "StaffRoleID", "RoleName", staff.FK_StaffRoleID);
-            return View(staff);
+            var staff = viewModel.CopyToModel(viewModel); 
+
+            // Save to DB
+            db.Staffs.Add(staff);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Staff");
+           
         }
 
         // GET: Staff/Edit/5

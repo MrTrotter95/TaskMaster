@@ -24,11 +24,11 @@ namespace TaskMasterWeb.ViewModels
         public ProjectCreateViewModel()
         {
             var clientRepository = new ClientRepository();
-            var staffRepository = new StaffRepository();
+            var staffRepository = new EmployeeRepository();
             var projectStatusRepository = new ProjectStatusRepository();
 
             var clients = clientRepository.GetAllClients();
-            var staff = staffRepository.GetAllStaff();
+            var staff = staffRepository.GetAllEmployees();
             var projectStatuses = projectStatusRepository.GetAllProjectStatuses();
 
             ClientSelectList = clients.Select(c => new SelectListItem
@@ -53,10 +53,10 @@ namespace TaskMasterWeb.ViewModels
         // Create project from Client/Details/ID view
         public ProjectCreateViewModel(int clientID)
         {
-            var staffRepository = new StaffRepository();
+            var staffRepository = new EmployeeRepository();
             var projectStatusRepository = new ProjectStatusRepository();
 
-            var staff = staffRepository.GetAllStaff();
+            var staff = staffRepository.GetAllEmployees();
             var projectStatuses = projectStatusRepository.GetAllProjectStatuses();
 
             SelectedClientId = clientID;

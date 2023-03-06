@@ -1,0 +1,66 @@
+﻿@model TaskMasterWeb.ViewModels.Employees.EmployeeCreateViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("Create", "Staff", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="col-md-4 employee-form">
+        <div>
+            <h4 class="fw-semibold black-new pt-2 translateZ-50">New Contact</h4>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="d-flex flex-column justify-content-evenly">
+        <div class="form-group mgb-15">
+            <div class="d-flex align-items-center">
+                <img class="svg-label-image-sm svg-color-red mgr-5 col-sm-1" src="@Url.Content("~/Content/Images/circle-fill.svg")" />
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "custom-input-white", placeholder = "First name..." } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mgb-15">
+            <div class="d-flex align-items-center">
+                <img class="svg-label-image-sm svg-color-red mgr-5 col-sm-1" src="@Url.Content("~/Content/Images/circle-fill.svg")" />
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "custom-input-white", placeholder = "Last name..." } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mgb-15">
+            <div class="d-flex align-items-center">
+                <img class="svg-label-image svg-color-red mgr-5 col-sm-1" src="@Url.Content("~/Content/Images/envelope-at.svg")" />
+                @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "custom-input-white", placeholder = "Email address..." } })
+                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mgb-15">
+            <div class="d-flex align-items-center">
+                <img class="svg-label-image svg-color-red mgr-5 col-sm-1" src="@Url.Content("~/Content/Images/telephone.svg")" />
+                @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "custom-input-white", placeholder = "Contact number..." } })
+                @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mgb-15">
+            <div class="d-flex align-items-center">
+                <img class="svg-label-image svg-color-red mgr-5 col-sm-1" src="@Url.Content("~/Content/Images/gear.svg")" />
+                @Html.DropDownListFor(model => model.SelectedRoleId, Model.RoleSelectList, htmlAttributes: new { @class = "custom-input-white" })
+                @Html.ValidationMessageFor(model => model.RoleSelectList, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+        <div class="form-group">
+            <input value="Save" type="submit" class="btn" style="width: 100%;" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
