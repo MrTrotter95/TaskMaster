@@ -196,12 +196,11 @@
     <Compile Include="ViewModels\ClientContacts\ClientContactCreateViewModel.cs" />
     <Compile Include="ViewModels\Clients\ClientCreateViewModel.cs" />
     <Compile Include="ViewModels\Clients\ClientDetailsViewModel.cs" />
-    <Compile Include="ViewModels\Clients\ClientDirectoryViewModel.cs" />
     <Compile Include="ViewModels\Employees\EmployeeCreateViewModel.cs" />
-    <Compile Include="ViewModels\Employees\EmployeeDetailsViewModel.cs" />
-    <Compile Include="ViewModels\Projects\AssignedProjectsViewModel.cs" />
+    <Compile Include="ViewModels\Employees\EmployeeDashboardViewModel.cs" />
+    <Compile Include="ViewModels\Projects\AssignProjectsToEmployeesViewModel.cs" />
     <Compile Include="ViewModels\Projects\ProjectCreateViewModel.cs" />
-    <Compile Include="ViewModels\Projects\ProjectStatusCountViewModel.cs" />
+    <Compile Include="ViewModels\Projects\ProjectStatusSummaryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-chosen.css" />
@@ -380,7 +379,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\Project\" />
+    <Folder Include="Helpers\SelectListGenerators\" />
     <Folder Include="Views\AddProject\" />
     <Folder Include="Views\Project\" />
   </ItemGroup>

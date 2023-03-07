@@ -10,9 +10,9 @@ namespace TaskMasterWeb.Repositories
     {
         private TaskMasterDataEntities db = new TaskMasterDataEntities();
 
-        public List<ClientContact> GetClientContactsByClientId(int id)
+        public List<ClientContact> GetClientContactsByClientId(int clientID)
         {
-            var contacts = db.ClientContacts.Where(c => c.FK_ClientID == id).ToList();
+            var contacts = db.ClientContacts.Where(c => c.FK_ClientID == clientID).ToList();
 
             return contacts;
         }

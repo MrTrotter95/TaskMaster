@@ -1,58 +1,89 @@
-﻿@model TaskMasterWeb.Models.Staff
+﻿@model TaskMasterWeb.ViewModels.Employees.EmployeeDashboardViewModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Staff</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+    <div class="d-flex align-items-center col-sm-2 mgb-20">
+        <img class="svg-label-image svg-color-teal mgr-10" src="@Url.Content("~/Content/Images/arrow-left-circle.svg")" />
+        @Html.ActionLink("Employees", "Index", new { }, htmlAttributes: new { @class = "teal-new" })
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="fw-bold red title-text">Your Dashboard</h1>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+    <div class="client-details-card-wide pdl-30 mgt-20">
+        <h1 class="fw-semibold black-new pt-2 mgb-20">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h1>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+        <div class="d-flex align-items-center mgb-20">
+            <div class="d-flex align-items-center col-sm-2">
+                <img class="svg-label-image svg-color-red mgr-10" src="@Url.Content("~/Content/Images/envelope-at.svg")" />
+                <p class="black-new mb-0">Primary Email: </p>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ContactNumber)
-        </dt>
+            <p class="black-new fw-normal col-md-1 mb-0">@Html.DisplayFor(model => model.EmailAddress)</p>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ContactNumber)
-        </dd>
+        <div class="d-flex align-items-center mgb-20">
+            <div class="d-flex align-items-center col-sm-2">
+                <img class="svg-label-image svg-color-red mgr-10" src="@Url.Content("~/Content/Images/telephone.svg")" />
+                <p class="black-new mb-0">Primary Phone: </p>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailAddress)
-        </dt>
+            <p class="black-new fw-normal mb-0">@Html.DisplayFor(model => model.ContactNumber)</p>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmailAddress)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StaffRole.RoleName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StaffRole.RoleName)
-        </dd>
-
-    </dl>
+        <div class="d-flex justify-content-end m-auto align-items-center">
+            @Html.ActionLink("Edit", "Edit", "Staff", new { id = Model.StaffID }, htmlAttributes: new { @class = "teal-new" })
+            <img class="svg-label-image svg-color-teal mgl-10" src="@Url.Content("~/Content/Images/arrow-right.svg")" />
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.StaffID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="mgt-100 mgb-100">
+    <h1 class="fw-bold red title-text">Projects</h1>
+
+    @if (Model.Projects.Count > 0)
+    {
+        <div class="client-details-card-wide mgt-20">
+            <div class="d-flex gap-5 mgl-20">
+                @foreach (var stat in Model.ProjectStatusCount)
+                {
+                    <div class="d-flex align-items-center">
+                        <h3 class="fw-semibold teal-new pt-2 mgr-10">@stat.ProjectCount</h3>
+                        <p class="mb-0 black-new">@stat.StatusValue</p>
+                    </div>
+                }
+            </div>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr class="h6">
+                        <th class="pdt-20 pdl-20 pdb-15 black-new">
+                            @Html.DisplayNameFor(model => model.Projects)
+                        </th>
+                        <th class="pdt-20 pdb-15 black-new">
+                            Project Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Projects)
+                    {
+                        <tr class="table-hover">
+                            <td class="pdl-20 pdt-15 pdb-15">
+                                @Html.ActionLink(item.ProjectName, "Details", "Projects", new { id = item.ProjectID }, new { @class = "red" })
+                            </td>
+                            <td class="pdt-15 pdb-15 black">
+                                @Html.DisplayFor(modelItem => item.ProjectStatus.StatusValue)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    }
+</div>

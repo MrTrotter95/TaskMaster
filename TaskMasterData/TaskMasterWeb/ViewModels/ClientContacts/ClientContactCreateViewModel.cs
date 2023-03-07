@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using TaskMasterWeb.Models;
+﻿using TaskMasterWeb.Models;
 
 namespace TaskMasterWeb.ViewModels.ClientContacts
 {
@@ -12,14 +8,14 @@ namespace TaskMasterWeb.ViewModels.ClientContacts
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
-        public string ContactNumber{ get; set; }
+        public string ContactNumber { get; set; }
 
         public ClientContactCreateViewModel()
         {
 
         }
 
-        // Create client contact from Client/Details/id view
+        // Constructor to link the parent client to the client contact so user doesn't have to select who they belong to.
         public ClientContactCreateViewModel(int fk_ClientID)
         {
             FK_ClientID = fk_ClientID;
@@ -38,7 +34,5 @@ namespace TaskMasterWeb.ViewModels.ClientContacts
 
             return clientContact;
         }
-
-
     }
 }

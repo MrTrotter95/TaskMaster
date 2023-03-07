@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using TaskMasterWeb.Models;
 using TaskMasterWeb.Repositories;
@@ -14,7 +12,6 @@ namespace TaskMasterWeb.ViewModels
         public int SelectedClientId { get; set; }
         public int[] SelectedStaffIds { get; set; }
         public int SelectedStatusId { get; set; }
-
 
         // Meta Data
         public List<SelectListItem> ClientSelectList;
@@ -42,7 +39,7 @@ namespace TaskMasterWeb.ViewModels
                 Text = s.FirstName + " " + s.LastName,
                 Value = s.StaffID.ToString()
             }).ToList();
-            
+
             StatusSelectList = projectStatuses.Select(p => new SelectListItem
             {
                 Text = p.StatusValue,
@@ -50,7 +47,7 @@ namespace TaskMasterWeb.ViewModels
             }).ToList();
         }
 
-        // Create project from Client/Details/ID view
+        // Constructor to link the client to the project automatically so user doesn't have to select who it belongs to.
         public ProjectCreateViewModel(int clientID)
         {
             var staffRepository = new EmployeeRepository();

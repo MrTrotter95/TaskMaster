@@ -26,8 +26,7 @@ namespace TaskMasterWeb.Controllers
         {
             var viewModel = new ClientDetailsViewModel(id);
 
-            var cantFindClient = db.Clients.Find(id);
-            if (cantFindClient == null)
+            if (viewModel == null)
             {
                 return HttpNotFound();
             }
@@ -47,16 +46,16 @@ namespace TaskMasterWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ClientCreateViewModel viewModel)
         {
-
             if (!ModelState.IsValid)
             {
                 viewModel = new ClientCreateViewModel();
                 return View(viewModel);
             }
 
-
             var client = viewModel.CopyToModel(viewModel);
 
+
+            // Save to DB
             db.Clients.Add(client);
             db.SaveChanges();
             return RedirectToAction("Index");

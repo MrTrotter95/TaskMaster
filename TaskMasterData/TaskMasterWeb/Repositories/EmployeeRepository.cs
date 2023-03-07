@@ -16,9 +16,9 @@ namespace TaskMasterWeb.Repositories
             return db.Staffs.ToList();
         }
 
-        public Staff GetEmployeeByID(int id)
+        public Staff GetEmployeeByID(int employeeID)
         {
-            return db.Staffs.Find(id);
+            return db.Staffs.Find(employeeID);
         }
 
         public List<StaffRole> GetAllRoles()
@@ -32,6 +32,17 @@ namespace TaskMasterWeb.Repositories
                 .Where(r => r.StaffRoleID == EmployeeID)
                 .Select(r => r.RoleName)
                 .FirstOrDefault();
+        }
+
+        public List<SelectListItem> GetEmployeeRoleSelectList()
+        {
+            var roles = GetAllRoles();
+
+            return roles.Select(r => new SelectListItem
+            {
+                Text = r.RoleName,
+                Value = r.StaffRoleID.ToString()
+            }).ToList();
         }
     }
 }

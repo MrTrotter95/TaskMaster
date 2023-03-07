@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using TaskMasterWeb.Models;
 
 namespace TaskMasterWeb.ViewModels.Projects
 {
-    public class AssignedProjectsViewModel
+    public class AssignProjectsToEmployeesViewModel
     {
-        public AssignedProjectsViewModel()
+        public AssignProjectsToEmployeesViewModel()
         {
 
         }
@@ -19,9 +17,9 @@ namespace TaskMasterWeb.ViewModels.Projects
             {
                 FK_StaffID = id,
                 FK_ProjectID = projectId
-            });
+            }).ToList();
 
-            return assignedProjects.ToList();
+            return assignedProjects;
         }
 
     }

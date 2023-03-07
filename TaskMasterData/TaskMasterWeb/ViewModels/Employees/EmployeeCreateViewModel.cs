@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using TaskMasterWeb.Models;
 using TaskMasterWeb.Repositories;
@@ -22,19 +19,11 @@ namespace TaskMasterWeb.ViewModels.Employees
         public EmployeeCreateViewModel()
         {
             var staffRepository = new EmployeeRepository();
-
-            var roles = staffRepository.GetAllRoles();
-
-            RoleSelectList = roles.Select(r => new SelectListItem
-            {
-                Text = r.RoleName,
-                Value = r.StaffRoleID.ToString()
-            }).ToList();
+            RoleSelectList = staffRepository.GetEmployeeRoleSelectList();
         }
 
         public Staff CopyToModel(EmployeeCreateViewModel viewModel)
         {
-
             var employee = new Staff
             {
                 FK_StaffRoleID = viewModel.SelectedRoleId,

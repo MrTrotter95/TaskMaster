@@ -16,17 +16,31 @@ namespace TaskMasterWeb.Repositories
             return db.ProjectStatus.ToList();
         }
 
-        public List<ProjectStatusCountViewModel> GetCountOfProjectsGroupedByStatus(int id)
+        public List<ProjectStatusSummaryViewModel> GetCountOfProjectsGroupedByStatus(int id)
         {
             var query = from project in db.Projects
                         join status in db.ProjectStatus on project.FK_StatusID equals status.StatusID
                         where project.FK_ClientID == id
                         group project by status.StatusValue into g
-                        select new ProjectStatusCountViewModel
+                        select new ProjectStatusSummaryViewModel
                         {
                             ProjectCount = g.Count(),
                             StatusValue = g.Key
                         };
+
+            return query.ToList();
+        }
+
+        public List<ProjectStatusSummaryViewModel> GetProjectStatusesByEmployee(int employeeID)
+        {
+            var query = db.AssignedProjects
+                  .Where(ap => ap.FK_StaffID == employeeID)
+                  .GroupBy(ap => ap.Project.ProjectStatus.StatusValue)
+                  .Select(g => new ProjectStatusSummaryViewModel
+                  {
+                      ProjectCount = g.Count(),
+                      StatusValue = g.Key
+                  });
 
             return query.ToList();
         }

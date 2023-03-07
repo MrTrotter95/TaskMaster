@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using TaskMasterWeb.Models;
 using TaskMasterWeb.Repositories;
+using TaskMasterWeb.ViewModels.Projects;
 
 namespace TaskMasterWeb.ViewModels.Employees
 {
-    public class EmployeeDetailsViewModel
+    public class EmployeeDashboardViewModel
     {
         public int StaffID { get; set; }
 
@@ -27,24 +25,20 @@ namespace TaskMasterWeb.ViewModels.Employees
         [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
 
-        public List<Project> Projects { get; set; }
-
         // Meta Data
         public string RoleName;
+        public List<Project> Projects;
+        public List<ProjectStatusSummaryViewModel> ProjectStatusCount;
 
-        public EmployeeDetailsViewModel()
-        {
-
-        }
-
-        public EmployeeDetailsViewModel(int employeeID)
+        public EmployeeDashboardViewModel(int employeeID)
         {
             var employeeRepository = new EmployeeRepository();
             var projectsRespository = new ProjectRepository();
+            var projectStatusRepository = new ProjectStatusRepository();
 
             var employee = employeeRepository.GetEmployeeByID(employeeID);
             var assignedProjects = projectsRespository.GetProjectsAssignedToEmployeeByID(employeeID);
-
+            
             StaffID = employee.StaffID;
             FK_StaffRoleID = employee.FK_StaffRoleID;
             FirstName = employee.FirstName;
@@ -52,8 +46,8 @@ namespace TaskMasterWeb.ViewModels.Employees
             ContactNumber = employee.ContactNumber;
             EmailAddress = employee.EmailAddress;
             RoleName = employeeRepository.GetRoleByEmployeeID(employeeID);
-
             Projects = assignedProjects;
+            ProjectStatusCount = projectStatusRepository.GetCountOfProjectsGroupedByStatus(employeeID);
         }
     }
 }

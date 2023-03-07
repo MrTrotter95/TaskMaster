@@ -23,18 +23,15 @@ namespace TaskMasterWeb.Controllers
         }
 
         // GET: Staff/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Staff staff = db.Staffs.Find(id);
-            if (staff == null)
+            var viewModel = new EmployeeDashboardViewModel(id);
+
+            if (viewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(staff);
+            return View(viewModel);
         }
 
         // GET: Staff/Create

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using TaskMasterWeb.Models;
-using TaskMasterWeb.ViewModels.Projects;
 using TaskMasterWeb.Repositories;
+using TaskMasterWeb.ViewModels.Projects;
 
 namespace TaskMasterWeb.ViewModels.Clients
 {
@@ -34,29 +31,18 @@ namespace TaskMasterWeb.ViewModels.Clients
         [Display(Name = "Country")]
         public string Country { get; set; }
 
-        public List<ClientContact> ClientContacts { get; set; }
-        public List<Project> Projects { get; set; }
-        public int TotalActiveProjects { get; set; }
+        // Meta Data
+        public List<ClientContact> ClientContacts;
+        public List<Project> Projects;
+        public List<ProjectStatusSummaryViewModel> ProjectStatusCount;
 
-        public List<ProjectStatus> ProjectStatuses { get; set; }
-
-        public List<ProjectStatusCountViewModel> ProjectStatusCount { get; set; }
-
-
-        public ClientDetailsViewModel()
-        {
-
-        }
-
-        public ClientDetailsViewModel(int id)
+        public ClientDetailsViewModel(int clientID)
         {
             var clientRepository = new ClientRepository();
             var clientContactsRepository = new ClientContactsRepository();
-            var projectsRepository = new ProjectRepository();
+            var projectRepository = new ProjectRepository();
             var projectStatusRepository = new ProjectStatusRepository();
-
-
-            var client = clientRepository.GetClientById(id);
+            var client = clientRepository.GetClientById(clientID);
 
             ClientID = client.ClientID;
             CompanyName = client.CompanyName;
@@ -66,12 +52,9 @@ namespace TaskMasterWeb.ViewModels.Clients
             Suburb = client.Suburb;
             City = client.City;
             Country = client.Country;
-
-            ClientContacts = clientContactsRepository.GetClientContactsByClientId(id);
-            Projects = projectsRepository.GetProjectsByClientId(id);
-            TotalActiveProjects = projectsRepository.GetActiveProjectsCount(id);
-
-            ProjectStatusCount = projectStatusRepository.GetCountOfProjectsGroupedByStatus(id);
+            ClientContacts = clientContactsRepository.GetClientContactsByClientId(client.ClientID);
+            Projects = projectRepository.GetProjectsByClientId(client.ClientID);
+            ProjectStatusCount = projectStatusRepository.GetCountOfProjectsGroupedByStatus(client.ClientID);
 
         }
     }

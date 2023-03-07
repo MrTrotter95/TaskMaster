@@ -16,9 +16,9 @@ namespace TaskMasterWeb.Repositories
             return db.Clients.ToList();
         }
 
-        public Client GetClientById(int id)
+        public Client GetClientById(int clientID)
         {
-            return db.Clients.Find(id);
+            return db.Clients.Find(clientID);
         }
 
     }

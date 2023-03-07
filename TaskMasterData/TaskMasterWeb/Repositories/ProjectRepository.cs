@@ -10,10 +10,10 @@ namespace TaskMasterWeb.Repositories
     {
         private TaskMasterDataEntities db = new TaskMasterDataEntities();
 
-        public List<Project> GetProjectsByClientId(int id)
+        public List<Project> GetProjectsByClientId(int clientID)
         {
             var projects = db.Projects
-                .Where(c => c.FK_ClientID == id)
+                .Where(c => c.FK_ClientID == clientID)
                 .ToList();
 
             return projects;
@@ -27,24 +27,6 @@ namespace TaskMasterWeb.Repositories
                 .ToList();
 
             return projects;
-        }
-
-        public int GetActiveProjectsCount(int id)
-        {
-            var projectCount = db.Projects
-                .Where(c => c.FK_ClientID == id)
-                .Count();
-
-            return projectCount;
-        }
-
-        public int GetActiveProjectsCountForEmployee(int EmployeeID)
-        {
-            var projectCount = db.AssignedProjects
-                .Where(c => c.FK_StaffID == EmployeeID)
-                .Count();
-
-            return projectCount;
         }
     }
 }
