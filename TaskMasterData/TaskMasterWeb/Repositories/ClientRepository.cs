@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using TaskMasterWeb.Models;
 
 
 namespace TaskMasterWeb.Repositories
-{ 
-    public class ClientRepository
+{
+    public static class ClientRepository
     {
-        private TaskMasterDataEntities db = new TaskMasterDataEntities();
+        private static TaskMasterDataEntities db = new TaskMasterDataEntities();
 
-        public List<Client> GetAllClients()
+        public static List<Client> GetAllClients()
         {
             return db.Clients.ToList();
         }
 
-        public Client GetClientById(int clientID)
+        public static Client GetClientById(int clientID)
         {
             return db.Clients.Find(clientID);
         }

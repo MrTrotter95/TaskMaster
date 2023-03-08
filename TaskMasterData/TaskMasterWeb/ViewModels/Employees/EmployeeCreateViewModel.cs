@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using TaskMasterWeb.Helpers;
 using TaskMasterWeb.Models;
-using TaskMasterWeb.Repositories;
 
 namespace TaskMasterWeb.ViewModels.Employees
 {
@@ -18,8 +18,7 @@ namespace TaskMasterWeb.ViewModels.Employees
 
         public EmployeeCreateViewModel()
         {
-            var staffRepository = new EmployeeRepository();
-            RoleSelectList = staffRepository.GetEmployeeRoleSelectList();
+            RoleSelectList = SelectListGenerator.GetEmployeeRoleSelectList();
         }
 
         public Staff CopyToModel(EmployeeCreateViewModel viewModel)

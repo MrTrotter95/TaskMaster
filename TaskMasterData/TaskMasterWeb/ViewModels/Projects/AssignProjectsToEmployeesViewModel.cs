@@ -11,7 +11,7 @@ namespace TaskMasterWeb.ViewModels.Projects
 
         }
 
-        public List<AssignedProject> CopyToModel(ProjectCreateViewModel viewModel, int projectId)
+        public static List<AssignedProject> CopyToModel(ProjectCreateViewModel viewModel, int projectId)
         {
             var assignedProjects = viewModel.SelectedStaffIds.Select(id => new AssignedProject
             {

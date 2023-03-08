@@ -32,12 +32,7 @@ namespace TaskMasterWeb.ViewModels.Employees
 
         public EmployeeDashboardViewModel(int employeeID)
         {
-            var employeeRepository = new EmployeeRepository();
-            var projectsRespository = new ProjectRepository();
-            var projectStatusRepository = new ProjectStatusRepository();
-
-            var employee = employeeRepository.GetEmployeeByID(employeeID);
-            var assignedProjects = projectsRespository.GetProjectsAssignedToEmployeeByID(employeeID);
+            var employee = EmployeeRepository.GetEmployeeByID(employeeID);
             
             StaffID = employee.StaffID;
             FK_StaffRoleID = employee.FK_StaffRoleID;
@@ -45,9 +40,9 @@ namespace TaskMasterWeb.ViewModels.Employees
             LastName = employee.LastName;
             ContactNumber = employee.ContactNumber;
             EmailAddress = employee.EmailAddress;
-            RoleName = employeeRepository.GetRoleByEmployeeID(employeeID);
-            Projects = assignedProjects;
-            ProjectStatusCount = projectStatusRepository.GetCountOfProjectsGroupedByStatus(employeeID);
+            RoleName = EmployeeRepository.GetRoleByEmployeeID(employeeID);
+            Projects = ProjectRepository.GetProjectsAssignedToEmployeeByID(employeeID);
+            ProjectStatusCount = ProjectStatusRepository.GetCountOfProjectsGroupedByStatus(employeeID);
         }
     }
 }

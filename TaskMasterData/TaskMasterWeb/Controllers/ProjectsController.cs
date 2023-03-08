@@ -60,10 +60,8 @@ namespace TaskMasterWeb.Controllers
             db.Projects.Add(project);
             db.SaveChanges();
 
-
             // Assigning multiple staff to the same project
-            var assignedProjectsModel = new AssignProjectsToEmployeesViewModel();
-            var assignedProjects = assignedProjectsModel.CopyToModel(viewModel, project.ProjectID);
+            var assignedProjects = AssignProjectsToEmployeesViewModel.CopyToModel(viewModel, project.ProjectID);
 
             // Save assigned project
             db.AssignedProjects.AddRange(assignedProjects);

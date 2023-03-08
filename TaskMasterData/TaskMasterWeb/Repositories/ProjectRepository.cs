@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using TaskMasterWeb.Models;
 
 namespace TaskMasterWeb.Repositories
 {
-    public class ProjectRepository
+    public static class ProjectRepository
     {
-        private TaskMasterDataEntities db = new TaskMasterDataEntities();
+        private static TaskMasterDataEntities db = new TaskMasterDataEntities();
 
-        public List<Project> GetProjectsByClientId(int clientID)
+        public static List<Project> GetProjectsByClientId(int clientID)
         {
             var projects = db.Projects
                 .Where(c => c.FK_ClientID == clientID)
@@ -19,7 +17,7 @@ namespace TaskMasterWeb.Repositories
             return projects;
         }
 
-        public List<Project> GetProjectsAssignedToEmployeeByID(int employeeID)
+        public static List<Project> GetProjectsAssignedToEmployeeByID(int employeeID)
         {
             var projects = db.AssignedProjects
                 .Where(ap => ap.FK_StaffID == employeeID)

@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using TaskMasterWeb.Models;
 using TaskMasterWeb.Repositories;
+using TaskMasterWeb.ViewModels.AssignedProjects;
 using TaskMasterWeb.ViewModels.Projects;
 
 namespace TaskMasterWeb.ViewModels.Clients
@@ -33,16 +34,12 @@ namespace TaskMasterWeb.ViewModels.Clients
 
         // Meta Data
         public List<ClientContact> ClientContacts;
-        public List<Project> Projects;
+        public List<ProjectsViewModel> Projects;
         public List<ProjectStatusSummaryViewModel> ProjectStatusCount;
 
         public ClientDetailsViewModel(int clientID)
         {
-            var clientRepository = new ClientRepository();
-            var clientContactsRepository = new ClientContactsRepository();
-            var projectRepository = new ProjectRepository();
-            var projectStatusRepository = new ProjectStatusRepository();
-            var client = clientRepository.GetClientById(clientID);
+            var client = ClientRepository.GetClientById(clientID);
 
             ClientID = client.ClientID;
             CompanyName = client.CompanyName;
@@ -52,10 +49,9 @@ namespace TaskMasterWeb.ViewModels.Clients
             Suburb = client.Suburb;
             City = client.City;
             Country = client.Country;
-            ClientContacts = clientContactsRepository.GetClientContactsByClientId(client.ClientID);
-            Projects = projectRepository.GetProjectsByClientId(client.ClientID);
-            ProjectStatusCount = projectStatusRepository.GetCountOfProjectsGroupedByStatus(client.ClientID);
-
+            ClientContacts = ClientContactsRepository.GetClientContactsByClientId(client.ClientID);
+            Projects = AssignedProjectsRepository.GetEmployeesAssignedToProject(client.ClientID);
+            ProjectStatusCount = ProjectStatusRepository.GetCountOfProjectsGroupedByStatus(client.ClientID);
         }
     }
 }

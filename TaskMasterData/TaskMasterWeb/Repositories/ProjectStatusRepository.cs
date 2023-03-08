@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using TaskMasterWeb.Models;
 using TaskMasterWeb.ViewModels.Projects;
 
 namespace TaskMasterWeb.Repositories
 {
-    public class ProjectStatusRepository
+    public static class ProjectStatusRepository
     {
-        private TaskMasterDataEntities db = new TaskMasterDataEntities();
+        private static TaskMasterDataEntities db = new TaskMasterDataEntities();
 
-        public List<ProjectStatus> GetAllProjectStatuses()
+        public static List<ProjectStatus> GetAllProjectStatuses()
         {
             return db.ProjectStatus.ToList();
         }
 
-        public List<ProjectStatusSummaryViewModel> GetCountOfProjectsGroupedByStatus(int id)
+        public static List<ProjectStatusSummaryViewModel> GetCountOfProjectsGroupedByStatus(int id)
         {
             var query = from project in db.Projects
                         join status in db.ProjectStatus on project.FK_StatusID equals status.StatusID
@@ -31,7 +29,7 @@ namespace TaskMasterWeb.Repositories
             return query.ToList();
         }
 
-        public List<ProjectStatusSummaryViewModel> GetProjectStatusesByEmployee(int employeeID)
+        public static List<ProjectStatusSummaryViewModel> GetProjectStatusesByEmployee(int employeeID)
         {
             var query = db.AssignedProjects
                   .Where(ap => ap.FK_StaffID == employeeID)

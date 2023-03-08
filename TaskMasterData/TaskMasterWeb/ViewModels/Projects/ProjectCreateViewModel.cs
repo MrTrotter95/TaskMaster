@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
+using TaskMasterWeb.Helpers;
 using TaskMasterWeb.Models;
-using TaskMasterWeb.Repositories;
 
 namespace TaskMasterWeb.ViewModels
 {
@@ -20,55 +19,17 @@ namespace TaskMasterWeb.ViewModels
 
         public ProjectCreateViewModel()
         {
-            var clientRepository = new ClientRepository();
-            var staffRepository = new EmployeeRepository();
-            var projectStatusRepository = new ProjectStatusRepository();
-
-            var clients = clientRepository.GetAllClients();
-            var staff = staffRepository.GetAllEmployees();
-            var projectStatuses = projectStatusRepository.GetAllProjectStatuses();
-
-            ClientSelectList = clients.Select(c => new SelectListItem
-            {
-                Text = c.CompanyName,
-                Value = c.ClientID.ToString()
-            }).ToList();
-
-            StaffSelectList = staff.Select(s => new SelectListItem
-            {
-                Text = s.FirstName + " " + s.LastName,
-                Value = s.StaffID.ToString()
-            }).ToList();
-
-            StatusSelectList = projectStatuses.Select(p => new SelectListItem
-            {
-                Text = p.StatusValue,
-                Value = p.StatusID.ToString()
-            }).ToList();
+            ClientSelectList = SelectListGenerator.GetClientSelectList();
+            StaffSelectList = SelectListGenerator.GetStaffSelectLIst();
+            StatusSelectList = SelectListGenerator.GetStatusSelectList();
         }
 
         // Constructor to link the client to the project automatically so user doesn't have to select who it belongs to.
         public ProjectCreateViewModel(int clientID)
         {
-            var staffRepository = new EmployeeRepository();
-            var projectStatusRepository = new ProjectStatusRepository();
-
-            var staff = staffRepository.GetAllEmployees();
-            var projectStatuses = projectStatusRepository.GetAllProjectStatuses();
-
             SelectedClientId = clientID;
-
-            StaffSelectList = staff.Select(s => new SelectListItem
-            {
-                Text = s.FirstName + " " + s.LastName,
-                Value = s.StaffID.ToString()
-            }).ToList();
-
-            StatusSelectList = projectStatuses.Select(p => new SelectListItem
-            {
-                Text = p.StatusValue,
-                Value = p.StatusID.ToString()
-            }).ToList();
+            StaffSelectList = SelectListGenerator.GetStaffSelectLIst();
+            StatusSelectList = SelectListGenerator.GetStatusSelectList();
         }
 
         public Project CopyToModel(ProjectCreateViewModel viewModel)

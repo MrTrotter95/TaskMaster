@@ -104,19 +104,29 @@
                         <th class="pdt-20 pdb-15 black-new">
                             Project Status
                         </th>
+                        <th class="pdt-20 pdb-15 black-new">
+                            Assigned To
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.Projects)
                     {
-                        <tr class="table-hover">
-                            <td class="pdl-20 pdt-15 pdb-15">
-                                @Html.ActionLink(item.ProjectName, "Details", "Projects", new { id = item.ProjectID }, new { @class = "red" })
-                            </td>
-                            <td class="pdt-15 pdb-15 black">
-                                @Html.DisplayFor(modelItem => item.ProjectStatus.StatusValue)
-                            </td>
-                        </tr>
+                    <tr class="table-hover">
+                        <td class="pdl-20 pdt-15 pdb-15">
+                            @Html.ActionLink(item.ProjectName, "Details", "Projects", new { id = item.ProjectID }, new { @class = "red" })
+                        </td>
+                        <td class="pdt-15 pdb-15 black">
+                            @Html.DisplayFor(modelItem => item.ProjectStatus.StatusValue)
+                        </td>
+                        <td class="pdt-15 pdb-15 black">
+                            @foreach (var employee in item.AssignedEmployees)
+                            {
+                                <p>@employee.FirstName @employee.LastName</p>
+                            }
+
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
