@@ -4,9 +4,9 @@ using TaskMasterWeb.Models;
 
 namespace TaskMasterWeb.ViewModels.Projects
 {
-    public class AssignProjectsToEmployeesViewModel
+    public class AssignProjectToEmployeesModel
     {
-        public AssignProjectsToEmployeesViewModel()
+        public AssignProjectToEmployeesModel()
         {
 
         }

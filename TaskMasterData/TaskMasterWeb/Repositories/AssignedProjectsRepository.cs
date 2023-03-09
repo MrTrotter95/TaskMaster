@@ -12,17 +12,17 @@ namespace TaskMasterWeb.Repositories
     {
         private static TaskMasterDataEntities db = new TaskMasterDataEntities();
 
-        public static List<ProjectsViewModel> GetEmployeesAssignedToProject(int clientID)
+        public static List<ClientProjectsModel> GetEmployeesAssignedToProject(int clientID)
         {
             var assignedProjects = db.AssignedProjects
                 .Where(ap => ap.Project.FK_ClientID == clientID)
-                .Select(g => new ProjectsViewModel
+                .Select(g => new ClientProjectsModel
                 {
                     ProjectID = g.FK_ProjectID,
                     ProjectName = g.Project.ProjectName,
                     ProjectStatus = g.Project.ProjectStatus,
                     AssignedEmployees = g.Project.AssignedProjects
-                                            .Select(ap => new AssignedProjectsViewModel
+                                            .Select(ap => new AssignedProjectsModel
                                             {
                                                 FirstName = ap.Staff.FirstName,
                                                 LastName = ap.Staff.LastName,

@@ -28,7 +28,7 @@ namespace TaskMasterWeb.ViewModels.Employees
         // Meta Data
         public string RoleName;
         public List<Project> Projects;
-        public List<ProjectStatusSummaryViewModel> ProjectStatusCount;
+        public List<ProjectStatusSummaryModel> ProjectStatusCount;
 
         public EmployeeDashboardViewModel(int employeeID)
         {

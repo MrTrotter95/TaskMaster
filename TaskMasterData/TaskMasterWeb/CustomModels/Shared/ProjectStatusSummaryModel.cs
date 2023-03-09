@@ -1,11 +1,11 @@
 ﻿namespace TaskMasterWeb.ViewModels.Projects
 {
-    public class ProjectStatusSummaryViewModel
+    public class ProjectStatusSummaryModel
     {
         public int ProjectCount { get; set; }
         public string StatusValue { get; set; }
 
-        public ProjectStatusSummaryViewModel()
+        public ProjectStatusSummaryModel()
         {
 
         }

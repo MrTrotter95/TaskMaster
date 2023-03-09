@@ -195,16 +195,16 @@
     <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Repositories\ProjectStatusRepository.cs" />
-    <Compile Include="ViewModels\AssignedProjects\AssignedProjectsViewModel.cs" />
+    <Compile Include="CustomModels\AssignedProjects\AssignedProjectsModel.cs" />
     <Compile Include="ViewModels\ClientContacts\ClientContactCreateViewModel.cs" />
     <Compile Include="ViewModels\Clients\ClientCreateViewModel.cs" />
     <Compile Include="ViewModels\Clients\ClientDetailsViewModel.cs" />
     <Compile Include="ViewModels\Employees\EmployeeCreateViewModel.cs" />
     <Compile Include="ViewModels\Employees\EmployeeDashboardViewModel.cs" />
-    <Compile Include="ViewModels\Projects\AssignProjectsToEmployeesViewModel.cs" />
-    <Compile Include="ViewModels\Projects\ProjectCreateViewModel.cs" />
-    <Compile Include="ViewModels\Projects\ProjectStatusSummaryViewModel.cs" />
-    <Compile Include="ViewModels\Projects\ProjectsViewModel.cs" />
+    <Compile Include="CustomModels\Project\AssignProjectToEmployeesModel.cs" />
+    <Compile Include="ViewModels\Project\ProjectCreateViewModel.cs" />
+    <Compile Include="CustomModels\Shared\ProjectStatusSummaryModel.cs" />
+    <Compile Include="CustomModels\Client\ClientProjectsModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-chosen.css" />

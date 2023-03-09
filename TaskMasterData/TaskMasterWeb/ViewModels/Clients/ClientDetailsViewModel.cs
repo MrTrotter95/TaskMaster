@@ -34,8 +34,8 @@ namespace TaskMasterWeb.ViewModels.Clients
 
         // Meta Data
         public List<ClientContact> ClientContacts;
-        public List<ProjectsViewModel> Projects;
-        public List<ProjectStatusSummaryViewModel> ProjectStatusCount;
+        public List<ClientProjectsModel> Projects;
+        public List<ProjectStatusSummaryModel> ProjectStatusCount;
 
         public ClientDetailsViewModel(int clientID)
         {
